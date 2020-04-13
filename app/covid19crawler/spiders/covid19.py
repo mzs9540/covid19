@@ -3,6 +3,8 @@ from ..items import Covid19CrawlerItem
 
 
 def to_num(value):
+    if value == 'N/A':
+        value = '0,0'
     return float(value.replace(',', ''))
 
 
