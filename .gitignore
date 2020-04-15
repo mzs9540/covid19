@@ -69,6 +69,9 @@ instance/
 # Scrapy stuff:
 .scrapy
 covid19_items.csv
+covid19.csv
+full_data.csv
+
 
 # Sphinx documentation
 docs/_build/

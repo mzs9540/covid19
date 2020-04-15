@@ -81,7 +81,7 @@ class FirstSpider(scrapy.Spider):
         # total_cases_per_million = total_cases_per_million[9:221]
         # death_per_million = death_per_million[9:221]
         # new_deaths = new_deaths[9:221]
-        for i in range(8, 220):
+        for i in range(len(total_cases)):
             items['countries'] = countries[i]
             items['total_cases'] = total_cases[i]
             items['new_cases'] = new_cases[i]
