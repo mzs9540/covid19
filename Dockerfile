@@ -10,6 +10,7 @@ RUN ln -sf /dev/stdout /var/log/nginx/access.log \
 
 COPY ./requirements.txt /requirements.txt
 COPY ./start-server.sh /start-server.sh
+RUN chmod +x /start-server.sh
 RUN pip install -r /requirements.txt
 
 RUN mkdir /app
