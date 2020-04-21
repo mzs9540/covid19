@@ -24,7 +24,6 @@ class FirstSpider(scrapy.Spider):
     }
 
     def parse(self, response):
-        items = Covid19NewsCrawlerItem()
         t = response.xpath('//*[@id="PageContent_C003_Col01"]/div/div/a')
         title = []
         href = []
@@ -39,6 +38,8 @@ class FirstSpider(scrapy.Spider):
             href.append(data.get())
 
         for i in range(len(t)):
+            items = Covid19NewsCrawlerItem()
             items['title'] = title[i]
             items['href'] = href[i]
+            items.save()
             yield items

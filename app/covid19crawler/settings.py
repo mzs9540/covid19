@@ -1,13 +1,13 @@
-# -*- coding: utf-8 -*-
+import os
+import sys
+import django
 
-# Scrapy settings for covid19crawler project
-#
-# For simplicity, this file contains only settings considered important or
-# commonly used. You can find more settings consulting the documentation:
-#
-#     https://docs.scrapy.org/en/latest/topics/settings.html
-#     https://docs.scrapy.org/en/latest/topics/downloader-middleware.html
-#     https://docs.scrapy.org/en/latest/topics/spider-middleware.html
+
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+sys.path.append(BASE_DIR + '\\core')
+print(BASE_DIR + '\\core')
+os.environ['DJANGO_SETTINGS_MODULE'] = 'covid19.settings'
+django.setup()
 
 BOT_NAME = 'covid19crawler'
 
