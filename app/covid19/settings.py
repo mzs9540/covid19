@@ -68,10 +68,11 @@ WSGI_APPLICATION = 'covid19.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'HOST': os.environ.get('DB_HOST'),
-        'NAME': os.environ.get('DB_NAME'),
-        'USER': os.environ.get('DB_USER'),
-        'PASSWORD': os.environ.get('DB_PASS'),
+        'HOST': 'mzs-covid-19.cnfi4nywkp7q.us-east-2.rds.amazonaws.com',
+        'NAME': 'mzs_covid_19',
+        'USER': 'mzs9540',
+        'PASSWORD': 'Htcp3400!',
+        'PORT': '5432'
 
     }
 }

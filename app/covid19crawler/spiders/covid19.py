@@ -15,6 +15,13 @@ class FirstSpider(scrapy.Spider):
         'https://www.worldometers.info/coronavirus/'
     ]
 
+    custom_settings = {
+        'ITEM_PIPELINES': {
+            'covid19crawler.pipelines.Covid19CrawlerPipeline': 300,
+            'covid19crawler.pipelines.CSVPipeline': 500,
+        }
+    }
+
     def parse(self, response):
         items = Covid19CrawlerItem()
         t = response.css('table')
@@ -27,7 +34,6 @@ class FirstSpider(scrapy.Spider):
         total_cases_per_million = []
         death_per_million = []
         new_deaths = []
-
         for data in t.css('td:nth-child(1)'):
             value = "".join(data.css('::text').get(default='0'))
             countries.append(value)
@@ -41,8 +47,8 @@ class FirstSpider(scrapy.Spider):
             new_cases.append(to_num(value))
 
         for data in t.css('td:nth-child(4)'):
-            value = "".join(data.css('::text').get(default='0'))
-            if value == ' ' or '  ':
+            value = data.css('::text').get(default=0)
+            if value == ' ' or value == '  ':
                 value = '0'
             total_deaths.append(to_num(value))
 
@@ -65,6 +71,8 @@ class FirstSpider(scrapy.Spider):
         for data in t.css('td:nth-child(10)'):
             value = "".join(data.css('::text').get(default='0'))
             death_per_million.append(to_num(value))
+
+        print(type(t.css('td:nth-child(4)::text').get()))
         # new_cases = t.css('td:nth-child(3)::text').get(default=0)
         # total_deaths = t.css('td:nth-child(4)::text').get(default=0)
         # new_deaths = t.css('td:nth-child(5)::text').get(default=0)
@@ -81,14 +89,15 @@ class FirstSpider(scrapy.Spider):
         # total_cases_per_million = total_cases_per_million[9:221]
         # death_per_million = death_per_million[9:221]
         # new_deaths = new_deaths[9:221]
+
         for i in range(len(total_cases)):
             items['countries'] = countries[i]
             items['total_cases'] = total_cases[i]
             items['new_cases'] = new_cases[i]
-            items['total_deaths'] = total_deaths[i]
             items['total_recovered'] = total_recovered[i]
             items['active_cases'] = active_cases[i]
             items['total_cases_per_million'] = total_cases_per_million[i]
             items['death_per_million'] = death_per_million[i]
+            items['total_deaths'] = total_deaths[i]
             items['new_deaths'] = new_deaths[i]
             yield items

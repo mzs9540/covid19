@@ -1,6 +1,5 @@
 #!/bin/bash
 # start-server.sh
-chown -R /var/lib/nginx/body
 if [ -n "$DJANGO_SUPERUSER_USERNAME" ] && [ -n "$DJANGO_SUPERUSER_PASSWORD" ] ; then
     (python manage.py createsuperuser --no-input)
 fi

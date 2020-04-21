@@ -11,3 +11,8 @@ class Covid19CrawlerItem(scrapy.Item):
     total_cases = scrapy.Field()
     total_deaths = scrapy.Field()
     new_deaths = scrapy.Field()
+
+
+class Covid19NewsCrawlerItem(scrapy.Item):
+    title = scrapy.Field()
+    href = scrapy.Field()

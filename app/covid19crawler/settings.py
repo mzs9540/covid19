@@ -19,7 +19,7 @@ NEWSPIDER_MODULE = 'covid19crawler.spiders'
 #USER_AGENT = 'covid19crawler (+http://www.yourdomain.com)'
 
 # Obey robots.txt rules
-ROBOTSTXT_OBEY = True
+ROBOTSTXT_OBEY = False
 
 # Configure maximum concurrent requests performed by Scrapy (default: 16)
 #CONCURRENT_REQUESTS = 32
@@ -63,10 +63,6 @@ DOWNLOADER_MIDDLEWARES = {
 
 # Configure item pipelines
 # See https://docs.scrapy.org/en/latest/topics/item-pipeline.html
-ITEM_PIPELINES = {
-    'covid19crawler.pipelines.Covid19CrawlerPipeline': 300,
-    'covid19crawler.pipelines.CSVPipeline': 500,
-}
 
 # Enable and configure the AutoThrottle extension (disabled by default)
 # See https://docs.scrapy.org/en/latest/topics/autothrottle.html
