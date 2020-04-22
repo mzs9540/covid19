@@ -29,6 +29,7 @@ INSTALLED_APPS = [
     'rest_framework.authtoken',
     'core',
     'users',
+    'covid19crawler.apps.ScrapyProjectConfig',
 ]
 
 MIDDLEWARE = [

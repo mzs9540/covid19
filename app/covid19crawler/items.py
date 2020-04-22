@@ -1,6 +1,4 @@
 import scrapy
-from scrapy_djangoitem import DjangoItem
-from core.models import CovidNews
 
 
 class Covid19CrawlerItem(scrapy.Item):
@@ -15,5 +13,7 @@ class Covid19CrawlerItem(scrapy.Item):
     new_deaths = scrapy.Field()
 
 
-class Covid19NewsCrawlerItem(DjangoItem):
-    django_model = CovidNews
+class Covid19NewsCrawlerItem(scrapy.Item):
+    title = scrapy.Field()
+    href = scrapy.Field()
+    date = scrapy.Field()

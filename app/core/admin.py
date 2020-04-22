@@ -8,6 +8,7 @@ from . import models
 class UserAdmin(BaseUserAdmin):
     ordering = ['id']
     list_display = ['email', 'name', 'country', 'phone']
+    search_fields = ('email', 'name', 'phone', 'country')
     fieldsets = (
         (None, {'fields': ('email', 'password')}),
         (_('Personal Info'), {'fields': ('name', 'country', 'phone')}),
@@ -25,4 +26,11 @@ class UserAdmin(BaseUserAdmin):
     )
 
 
+class Covid19NewsModelAdmin(admin.ModelAdmin):
+    ordering = ['-date']
+    list_display = ['title', 'date']
+    search_fields = ('title', 'href')
+
+
 admin.site.register(models.User, UserAdmin)
+admin.site.register(models.CovidNews, Covid19NewsModelAdmin)

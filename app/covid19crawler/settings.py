@@ -4,8 +4,8 @@ import django
 
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-sys.path.append(BASE_DIR + '\\core')
-print(BASE_DIR + '\\core')
+sys.path.append(BASE_DIR + 'core')
+print(BASE_DIR + '/core')
 os.environ['DJANGO_SETTINGS_MODULE'] = 'covid19.settings'
 django.setup()
 

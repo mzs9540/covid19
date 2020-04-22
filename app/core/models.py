@@ -38,3 +38,13 @@ class User(AbstractBaseUser, PermissionsMixin):
     objects = UserManager()
 
     USERNAME_FIELD = 'email'
+
+
+class CovidNews(models.Model):
+    """Store the news of crawler based on covid 19"""
+    title = models.CharField(max_length=5000)
+    href = models.CharField(max_length=5000)
+    date = models.DateField(null=True)
+
+    def __str__(self):
+        return self.title

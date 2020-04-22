@@ -1,5 +1,8 @@
+from datetime import datetime
+
 import scrapy
 from ..items import Covid19NewsCrawlerItem
+from core.models import CovidNews
 
 
 def to_num(value):
@@ -13,7 +16,8 @@ class FirstSpider(scrapy.Spider):
     name = 'news'
 
     start_urls = [
-        'https://www.who.int/emergencies/diseases/novel-coronavirus-2019/media-resources/news'
+        "https://www.who.int/emergencies/diseases/"
+        "novel-coronavirus-2019/media-resources/news"
     ]
 
     custom_settings = {
@@ -27,19 +31,26 @@ class FirstSpider(scrapy.Spider):
         t = response.xpath('//*[@id="PageContent_C003_Col01"]/div/div/a')
         title = []
         href = []
+        date = []
 
         for data in t.css('.text-underline::text'):
-
             title.append(data.get())
 
-        print(len(title), 'hooooolaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa')
+        for data in t.css('.sub-title::text'):
+            date.append(datetime.strptime(" ".join(data.get().split()[:3]), '%d %B %Y'))
 
         for data in t.xpath('@href'):
             href.append(data.get())
 
-        for i in range(len(t)):
+        length = min(len(date), len(href), len(title))
+
+        for i in range(length):
             items = Covid19NewsCrawlerItem()
+            it, created = CovidNews.objects.get_or_create(
+                title=title[i],
+                date=date[i],
+                defaults={'href': href[i]})
             items['title'] = title[i]
             items['href'] = href[i]
-            items.save()
+            items['date'] = date[i]
             yield items
