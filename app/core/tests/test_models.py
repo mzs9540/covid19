@@ -1,3 +1,5 @@
+from datetime import date
+
 from django.test import TestCase
 from django.contrib.auth import get_user_model
 from core import models
@@ -43,3 +45,13 @@ class ModelTests(TestCase):
 
         self.assertTrue(user.is_superuser)
         self.assertTrue(user.is_staff)
+
+    def test_covid19_news_str(self):
+        """Test the Covid News string representation"""
+        news = models.CovidNews.objects.create(
+            title='Chicken Popcorn',
+            href='mzs.com',
+            date=date.today()
+        )
+
+        self.assertEqual(str(news), news.title)
