@@ -42,6 +42,10 @@ class User(AbstractBaseUser, PermissionsMixin):
 
 class CovidNews(models.Model):
     """Store the news of crawler based on covid 19"""
+
+    class Meta:
+        verbose_name_plural = 'Covid News'
+
     title = models.CharField(max_length=5000)
     href = models.CharField(max_length=5000)
     date = models.DateField(null=True)

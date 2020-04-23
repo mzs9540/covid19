@@ -5,3 +5,11 @@ To delete all the images,
 docker rmi -f $(docker images -a -q)
 
 docker-compose run --rm app sh -c "python manage.py test && flake8"
+
+docker-compose run --rm app sh -c "python manage.py createsuperuser"
+
+docker-compose run --rm app sh -c "python manage.py makemigrations"
+
+docker-compose run --rm app sh -c "scrapy crawl news"
+
+docker-compose up

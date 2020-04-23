@@ -10,15 +10,15 @@
       <Owner>mzs9540</Owner>
       <IntrospectionStateNumber>2096</IntrospectionStateNumber>
       <Current>1</Current>
-      <Relations>sequence|table|16410|16412|1
+      <Relations>sequence|table|16483|16485|1
+sequence|table|16496|16498|1
+sequence|table|16504|16506|1
+sequence|table|16541|16543|1
+sequence|table|16410|16412|1
 sequence|table|16421|16423|1
 sequence|table|16431|16433|1
 sequence|table|16439|16441|1
 sequence|table|16449|16451|1
-sequence|table|16483|16485|1
-sequence|table|16496|16498|1
-sequence|table|16504|16506|1
-sequence|table|16541|16543|1
 sequence|table|16783|16785|1
 </Relations>
     </database>
@@ -292,6 +292,7 @@ default_transaction_read_only=off</Config>
     </table>
     <table id="50" parent="23" name="core_covidnews">
       <ObjectId>16785</ObjectId>
+      <Outdated>1</Outdated>
       <Owner>mzs9540</Owner>
       <StateNumber>778</StateNumber>
     </table>
