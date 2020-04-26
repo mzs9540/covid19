@@ -1,4 +1,4 @@
-from datetime import datetime
+from datetime import datetime, timedelta
 
 import scrapy
 from ..items import Covid19NewsCrawlerItem
@@ -37,17 +37,21 @@ class FirstSpider(scrapy.Spider):
             title.append(data.get())
 
         for data in t.css('.sub-title::text'):
+            print(data.get(), 'khusiiiiiiiiiiiiiiiiiiiiiiiiiiiii')
             date.append(datetime.strptime(
-                " ".join(data.get().split()[:3]),
-                '%d %B %Y'))
+                "-".join(data.get().replace(',', ' ').split()[:3]),
+                '%d-%B-%Y').date())
 
         for data in t.xpath('@href'):
             href.append(data.get())
 
         length = min(len(date), len(href), len(title))
-
+        today = datetime.today().date()
+        yesterday = today - timedelta(days=1)
         for i in range(length):
             items = Covid19NewsCrawlerItem()
+            if yesterday == date[i]:
+                print(date[i], 'hooooooolaaa')
             it, created = CovidNews.objects.get_or_create(
                 title=title[i],
                 date=date[i],

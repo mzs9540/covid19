@@ -34,3 +34,5 @@ class Covid19NewsModelAdmin(admin.ModelAdmin):
 
 admin.site.register(models.User, UserAdmin)
 admin.site.register(models.CovidNews, Covid19NewsModelAdmin)
+admin.site.register(models.IndiaCovidStats)
+admin.site.register(models.WorldCovidStats)

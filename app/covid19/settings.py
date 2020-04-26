@@ -29,6 +29,8 @@ INSTALLED_APPS = [
     'rest_framework.authtoken',
     'core',
     'users',
+    'news',
+    'stats',
     'covid19crawler.apps.ScrapyProjectConfig',
 ]
 
