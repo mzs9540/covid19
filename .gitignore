@@ -70,6 +70,7 @@ instance/
 covid19_items.csv
 covid19.csv
 full_data.csv
+worldstat.csv
 
 
 # Sphinx documentation
