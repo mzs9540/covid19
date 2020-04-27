@@ -10,14 +10,14 @@ from stats import serializers
 
 from core.models import WorldCovidStats
 
-from core.permissions.permission import PermissionsForAdmin
+from core.permissions.permission import PermissionsForStaff
 
 
 class CSVParser(APIView):
     """Handle upload of CSV file"""
     parser_classes = (MultiPartParser, )
     authentication_classes = (TokenAuthentication,)
-    permission_classes = (PermissionsForAdmin,)
+    permission_classes = (PermissionsForStaff,)
 
     def post(self, request, *args, **kwargs):
         # to access files
@@ -49,5 +49,5 @@ class WorldStatListView(generics.ListAPIView):
     """Manage World State in the database"""
     serializer_class = serializers.CSVSerializer
     queryset = WorldCovidStats.objects.all()
-    permission_classes = (PermissionsForAdmin,)
+    permission_classes = (PermissionsForStaff,)
     authentication_classes = (TokenAuthentication,)

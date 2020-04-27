@@ -2,7 +2,7 @@ from rest_framework import viewsets
 from rest_framework.authentication import TokenAuthentication
 
 from core.models import CovidNews
-from core.permissions.permission import PermissionsForAdmin
+from core.permissions.permission import PermissionsForStaff
 from news import serializers
 
 
@@ -11,4 +11,4 @@ class WhoNewsViewSet(viewsets.ModelViewSet):
     serializer_class = serializers.WhoNewsSerializer
     queryset = CovidNews.objects.all()
     authentication_classes = (TokenAuthentication,)
-    permission_classes = (PermissionsForAdmin,)
+    permission_classes = (PermissionsForStaff,)

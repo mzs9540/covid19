@@ -1,7 +1,7 @@
 from rest_framework import permissions
 
 
-class PermissionsForAdmin(permissions.BasePermission):
+class PermissionsForStaff(permissions.BasePermission):
     """Define permission for News ViewSet Methods"""
 
     def has_permission(self, request, view):
