@@ -1,7 +1,8 @@
 import React from 'react';
 import {AppBar, Toolbar, Typography} from "@material-ui/core";
 import SideMenu from "./SideMenu";
-import {Link} from "react-router-dom";
+import {Link, Router} from "react-router-dom";
+import {connect} from "react-redux";
 
 
 class NavBar extends React.Component {
@@ -22,13 +23,30 @@ class NavBar extends React.Component {
                         </Typography>
                         </Link>
                         <hr/>
+                        {
+                            this.props.isAuth ? <Typography variant='subtitle2'>
+                                Hello
+                            </Typography> : null
+
+
+                        }
                         <SideMenu/>
                     </Toolbar>
                 </AppBar>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
             </>
         )
     }
 }
 
+const mapStateToProps = state => {
+    return {
+        isAuth: state.auth.token !== null,
+        username: state.auth.username
+    }
+};
 
-export default NavBar;
+export default connect(mapStateToProps)(NavBar);

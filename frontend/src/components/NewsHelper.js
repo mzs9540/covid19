@@ -2,15 +2,8 @@ import React from "react";
 import {Container, Paper, Typography, Divider} from "@material-ui/core";
 
 const NewsHelper = (props) => {
-    const newsList = news => {
-        if (props.location.pathname === '/') {
-            return news.slice(1,5)
-        } else {
-            return news
-        }
-    };
 
-    const news = newsList(props.news);
+    const news = props.location.pathname === '/' ? props.news.slice(0,5) : props.news;
 
     return (
         <Container maxWidth="md">

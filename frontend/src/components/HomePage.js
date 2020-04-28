@@ -3,8 +3,14 @@ import React from "react";
 import NewsHelper from "./NewsHelper";
 import {Grid} from "@material-ui/core";
 import SideNav from "../layouts/SideNav";
+import {connect} from "react-redux";
+import {fetchNews} from "../actions/newsActions";
 
 class HomePage extends React.Component {
+
+    componentDidMount() {
+        this.props.fetchNews();
+    }
 
     render() {
         return (
@@ -20,4 +26,13 @@ class HomePage extends React.Component {
     }
 }
 
-export default HomePage;
+const mapStateToProps = state => {
+    return {
+        news: state.news.whoNews.slice(0, 5),
+        newsError: state.news.error,
+        newsLoading: state.news.loading,
+        heading: 'News by WHO'
+    }
+};
+
+export default connect(mapStateToProps, {fetchNews})(HomePage);

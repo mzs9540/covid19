@@ -10,10 +10,7 @@ import history from "../history";
 const useStyles = makeStyles({
     list: {
         width: 250,
-    },
-    fullList: {
-        width: 'auto',
-    },
+    }
 });
 
 export default function SwipeableTemporaryDrawer() {
@@ -32,9 +29,7 @@ export default function SwipeableTemporaryDrawer() {
 
     const list = (anchor) => (
         <div
-            className={clsx(classes.list, {
-                [classes.fullList]: anchor === 'top' || anchor === 'bottom',
-            })}
+            className={clsx(classes.list)}
             role="presentation"
             onClick={toggleDrawer(anchor, false)}
             onKeyDown={toggleDrawer(anchor, false)}
