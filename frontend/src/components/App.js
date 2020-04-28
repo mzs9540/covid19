@@ -18,13 +18,13 @@ class App extends Component {
 
     render() {
         return (
-                <Router history={history}>
-                    <NavBar/>
-                    <Route path='/' exact render={(props) => <HomePage {...props} {...this.props}/>}/>
-                    <Route path='/who-news' exact render={(props) => <News {...props} {...this.props}/>}/>
-                    <Route path='/login' exact component={Login}/>
-                    <Route path='/sign-up' exact component={SignUp}/>
-                </Router>
+            <Router history={history}>
+                <NavBar/>
+                <Route path='/' exact component={HomePage}/>
+                <Route path='/who-news' exact component={News}/>
+                <Route path='/login' exact component={Login}/>
+                <Route path='/sign-up' exact component={SignUp}/>
+            </Router>
         );
     }
 }
