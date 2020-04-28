@@ -24,5 +24,6 @@ services:
       - '3000:3000'
     restart: on-failure
     container_name: web-app
+    stdin_open: true
     command: >
         sh -c "npm start"
