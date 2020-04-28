@@ -1,4 +1,4 @@
-FROM node:14-alpine AS alpine
+FROM node:14
 ENV VERSION=v14 NPM_VERSION=latest YARN_VERSION=latest
 MAINTAINER MZS LIMITED
 
@@ -10,7 +10,4 @@ RUN mkdir /frontend
 WORKDIR /frontend
 COPY . /frontend
 
-RUN adduser --disabled-password user
-RUN chown -R user:user /frontend/
-RUN chmod -R 755 /frontend/node_modules
-USER user
+RUN ls
