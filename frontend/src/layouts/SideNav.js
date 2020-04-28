@@ -5,19 +5,17 @@ import history from "../history";
 
 class SideNav extends Component {
     root = {
-        background: 'white',
+        background: '#c8e6c9',
         position: 'sticky',
+        padding: 30,
+        top: 90,
         bottom: 20,
-        zIndex: 5,
+        zIndex: 5
     };
 
     render() {
         return (
-            <>
-                <br/>
-                <br/>
-                <br/>
-                <div style={this.root}>
+            <div style={this.root}>
                 <Typography variant='h5' align='center'>
                     Useful Links
                 </Typography>
@@ -29,8 +27,7 @@ class SideNav extends Component {
                         <ListItemText primary={'Covid19 World Stats'} />
                     </ListItem>
                 </List>
-                </div>
-            </>
+            </div>
         )
     }
 }

@@ -1,6 +1,5 @@
 import * as actionTypes from './types';
-
-import * as axios from 'axios';
+import awsApi from "../api/awsApi";
 import history from "../history";
 
 
@@ -31,7 +30,7 @@ export const authLogin = (email, password) => {
     return async dispatch => {
         dispatch(authStart());
         try {
-            const res = await axios.post('http://localhost:8000/api/user/token/', {
+            const res = await awsApi.post('/api/user/token/', {
                 email,
                 password
             });
@@ -48,7 +47,7 @@ export const authLogin = (email, password) => {
 export const authSignUp = (email, password, name) => {
     return async dispatch => {
         try {
-            const res = await axios.post('http://localhost:8000/api/user/create/', {
+            const res = await awsApi.post('/api/user/create/', {
                 email,
                 password,
                 name
@@ -66,7 +65,7 @@ export const authSignUp = (email, password, name) => {
 
 export const authLogout = () => {
     return async dispatch => {
-        await axios.get('http://localhost:8000/api/user/logout', {
+        await awsApi.get('/api/user/logout', {
             headers: {
                 Authorization: `Token ${localStorage.getItem('token')}`,
                 'Content-Type': 'application/json'

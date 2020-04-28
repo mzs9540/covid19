@@ -1,6 +1,6 @@
 import * as actionTypes from './types';
 
-import * as axios from 'axios';
+import awsApi from "../api/awsApi";
 
 
 export const statsFetchStart = () => {
@@ -27,7 +27,7 @@ export const fetchStats = () => {
     return async dispatch => {
         dispatch(statsFetchStart());
         try {
-            const res = await axios.get('http://localhost:8000/api/stats');
+            const res = await awsApi.get('/api/stats');
             console.log(res);
             dispatch(statsFetchSuccess(res.data));
         } catch(err) {

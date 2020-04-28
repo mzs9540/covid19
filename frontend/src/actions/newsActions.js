@@ -1,6 +1,5 @@
 import * as actionTypes from './types';
-
-import * as axios from 'axios';
+import awsApi from "../api/awsApi";
 
 
 export const newFetchStart = () => {
@@ -27,7 +26,7 @@ export const fetchNews = () => {
     return async dispatch => {
         dispatch(newFetchStart());
         try {
-            const res = await axios.get('http://localhost:8000/api/news/who-news');
+            const res = await awsApi.get('/api/news/who-news');
             dispatch(newsFetchSuccess(res.data));
         } catch(err) {
             dispatch(newsFetchFail(err));

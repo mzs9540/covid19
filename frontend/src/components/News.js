@@ -13,6 +13,7 @@ class News extends React.Component {
     }
 
     render() {
+        console.log(this.props.news);
         return (
             <Grid container spacing={1}>
                 <Grid item sm={2} key={1}>
