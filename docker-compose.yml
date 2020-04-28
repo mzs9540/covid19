@@ -3,7 +3,8 @@ version: '3'
 services:
   app:
     build:
-      context: .
+      context: ./app
+      dockerfile: Dockerfile
     ports:
       - "8000:8000"
     volumes:
@@ -12,3 +13,17 @@ services:
       sh -c "python manage.py wait_for_db &&
              python manage.py migrate &&
              python manage.py runserver 0.0.0.0:8000"
+  web-app:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    volumes:
+      - /frontend/node_modules
+      - ./frontend:/frontend
+    ports:
+      - '3000:3000'
+    restart: on-failure
+    container_name: web-app
+    stdin_open: true
+    command: >
+        sh -c "npm start"
