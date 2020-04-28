@@ -9,14 +9,14 @@ export const statsFetchStart = () => {
     }
 };
 
-export const newsFetchSuccess = stats => {
+export const statsFetchSuccess = stats => {
     return {
         type: actionTypes.STATS_FETCH_SUCCESS,
         payload: stats
     }
 };
 
-export const newsFetchFail = err => {
+export const statsFetchFail = err => {
     return {
         type: actionTypes.STATS_FETCH_FAIL,
         payload: err
@@ -28,9 +28,10 @@ export const fetchStats = () => {
         dispatch(statsFetchStart());
         try {
             const res = await axios.get('http://localhost:8000/api/stats');
-            dispatch(newsFetchSuccess(res.data));
+            console.log(res);
+            dispatch(statsFetchSuccess(res.data));
         } catch(err) {
-            dispatch(newsFetchFail(err));
+            dispatch(statsFetchFail(err));
         }
     }
 };

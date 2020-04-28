@@ -1,11 +1,12 @@
 import React from 'react';
 import clsx from 'clsx';
 import { makeStyles } from '@material-ui/core/styles';
-import {SwipeableDrawer, Button, List, Divider, ListItemText, ListItemIcon, ListItem} from '@material-ui/core';
+import {SwipeableDrawer, Button, List, Divider, ListItemText, ListItem} from '@material-ui/core';
 
-import MailIcon from '@material-ui/icons/Mail';
 import MenuIcon from '@material-ui/icons/Menu';
 import history from "../history";
+import {connect} from "react-redux";
+import {authLogout} from "../actions";
 
 const useStyles = makeStyles({
     list: {
@@ -13,7 +14,7 @@ const useStyles = makeStyles({
     }
 });
 
-export default function SwipeableTemporaryDrawer() {
+function SwipeableTemporaryDrawer(props) {
     const classes = useStyles();
     const [state, setState] = React.useState({
         right: false,
@@ -33,13 +34,22 @@ export default function SwipeableTemporaryDrawer() {
             role="presentation"
             onClick={toggleDrawer(anchor, false)}
             onKeyDown={toggleDrawer(anchor, false)}
-        >
+        >{
+            !props.isAuth ?
             <List>
                 <ListItem button key={1} onClick={() => history.push('/login')}>
-                        <ListItemIcon><MailIcon /></ListItemIcon>
-                        <ListItemText primary={'Login'} />
+                    <ListItemText primary={'Login'}/>
+                </ListItem>
+                <ListItem button key={2} onClick={() => history.push('/sign-up')}>
+                    <ListItemText primary={'Sign Up'}/>
+                </ListItem>
+            </List> :
+                <List>
+                    <ListItem button key={1} onClick={() => props.authLogout()}>
+                        <ListItemText primary={'Logout'}/>
                     </ListItem>
-            </List>
+                </List>
+        }
             <Divider />
         </div>
     );
@@ -60,3 +70,11 @@ export default function SwipeableTemporaryDrawer() {
         </React.Fragment>
     );
 }
+
+const mapStateToProps = state => {
+    return {
+        isAuth: state.auth.token !== null
+    }
+};
+
+export default connect(mapStateToProps, {authLogout})(SwipeableTemporaryDrawer);

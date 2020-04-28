@@ -6,5 +6,3 @@ RUN mkdir /frontend
 WORKDIR /frontend
 COPY . /frontend
 RUN npm install latest-version
-
-RUN ls

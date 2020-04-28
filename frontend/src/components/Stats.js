@@ -1,15 +1,14 @@
-import React from "react";
+import React, {Component} from "react";
+import {fetchStats} from "../actions/statsActions";
 import {connect} from "react-redux";
-
-import NewsHelper from "./NewsHelper";
+import Table from '../layouts/Table'
 import {Grid} from "@material-ui/core";
 import SideNav from "../layouts/SideNav";
-import {fetchNews} from "../actions/newsActions";
 
-class News extends React.Component {
+class Stats extends Component {
 
     componentDidMount() {
-        this.props.fetchNews();
+        this.props.fetchStats();
     }
 
     render() {
@@ -19,7 +18,7 @@ class News extends React.Component {
                     <SideNav/>
                 </Grid>
                 <Grid item sm={10} key={2}>
-                    <NewsHelper {...this.props}/>
+                    <Table stats={this.props.stats}/>
                 </Grid>
             </Grid>
         )
@@ -28,11 +27,8 @@ class News extends React.Component {
 
 const mapStateToProps = state => {
     return {
-        news: state.news.whoNews,
-        newsError: state.news.error,
-        newsLoading: state.news.loading,
-        heading: 'News Published by WHO'
+        stats: state.stats.worldStats
     }
 };
 
-export default connect(mapStateToProps, {fetchNews})(News);
+export default connect(mapStateToProps, {fetchStats})(Stats);

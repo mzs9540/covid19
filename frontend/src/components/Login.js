@@ -5,6 +5,9 @@ import {authLogin} from "../actions";
 import {Container, TextField, Fab, Box, Grid} from "@material-ui/core";
 import history from "../history";
 import SideNav from "../layouts/SideNav";
+import Paper from "@material-ui/core/Paper";
+import Typography from "@material-ui/core/Typography";
+import {Link} from "react-router-dom";
 
 class Login extends Component {
 
@@ -27,20 +30,26 @@ class Login extends Component {
                 </Grid>
                 <Grid item sm={10}>
                     <Container maxWidth='sm'>
-                        <form onSubmit={this.props.handleSubmit(this.onSubmit)}>
-                            <Field name="username" component={this.renderInput} type="text" id="username"
-                                   label="Username"
-                                   margin="normal"/>
+                        <Paper elevation={3} style={{textAlign: 'center', padding: '30px'}}>
+                            <Typography variant='h3'>Login</Typography>
+                            <form onSubmit={this.props.handleSubmit(this.onSubmit)}>
+                                <Field name="username" component={this.renderInput} type="text" id="username"
+                                       label="Username"
+                                       margin="normal"/>
+                                <br/>
+                                <Field name="password" component={this.renderInput} type="password"
+                                       id="password"
+                                       label="Password"
+                                       margin="normal"/>
+                                <br/>
+                                <Fab variant="extended" aria-label="login" type='submit'>
+                                    Login
+                                </Fab>
+                            </form>
                             <br/>
-                            <Field name="password" component={this.renderInput} type="password"
-                                   id="password"
-                                   label="Password"
-                                   margin="normal"/>
-                            <br/>
-                            <Fab variant="extended" aria-label="login" type='submit'>
-                                Login
-                            </Fab>
-                        </form>
+                            or
+                            <Link to='/sign-up'> Sign Up</Link>
+                        </Paper>
                     </Container>
                 </Grid>
             </Grid>

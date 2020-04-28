@@ -8,6 +8,7 @@ import News from "./News";
 import NavBar from "../layouts/Navbar";
 import {connect} from "react-redux";
 import {authCheckLogin} from "../actions";
+import Stats from "./Stats";
 
 
 class App extends Component {
@@ -24,6 +25,7 @@ class App extends Component {
                 <Route path='/who-news' exact component={News}/>
                 <Route path='/login' exact component={Login}/>
                 <Route path='/sign-up' exact component={SignUp}/>
+                <Route path='/stats' exact component={Stats}/>
             </Router>
         );
     }

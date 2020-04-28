@@ -15,7 +15,7 @@ const reducer = (state= initialState, action) => {
         case actionTypes.NEWS_FETCH_FAIL:
             return {...state, error: action.payload, loading: false};
         default:
-            return initialState
+            return state
     }
 };
 

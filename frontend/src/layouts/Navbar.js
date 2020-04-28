@@ -17,7 +17,7 @@ class NavBar extends React.Component {
                                     align='center'>
                             Covid19
                             <br/>
-                            <Typography variant='subtitle2'>
+                            <Typography variant='srOnly'>
                                 Together We Fought, Together We Won
                             </Typography>
                         </Typography>
@@ -25,7 +25,7 @@ class NavBar extends React.Component {
                         <hr/>
                         {
                             this.props.isAuth ? <Typography variant='subtitle2'>
-                                Hello
+                                {this.props.username}
                             </Typography> : null
 
 

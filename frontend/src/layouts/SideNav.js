@@ -1,6 +1,5 @@
 import React, {Component} from "react";
-import {List, ListItem, ListItemIcon, ListItemText, Typography} from "@material-ui/core";
-import MailIcon from "@material-ui/icons/Mail";
+import {List, ListItem, ListItemText, Typography} from "@material-ui/core";
 import history from "../history";
 
 
@@ -23,10 +22,12 @@ class SideNav extends Component {
                     Useful Links
                 </Typography>
                 <List>
-                        <ListItem button key={1} onClick={() => history.push('/who-news')}>
-                            <ListItemIcon><MailIcon /></ListItemIcon>
-                            <ListItemText primary={'News by WHO'} />
-                        </ListItem>
+                    <ListItem button key={1} onClick={() => history.push('/who-news')}>
+                        <ListItemText primary={'News by WHO'} />
+                    </ListItem>
+                    <ListItem button key={1} onClick={() => history.push('/stats')}>
+                        <ListItemText primary={'Covid19 World Stats'} />
+                    </ListItem>
                 </List>
                 </div>
             </>

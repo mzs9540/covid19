@@ -13,12 +13,12 @@ const NewsHelper = (props) => {
             <Divider/>
             <br/>
             {
-                news.map(temp => {
+                news.map((temp, index) => {
                     return (
                         <>
                             <a href={temp.href} target='_blank'
                                rel="noreferrer noopener" style={{textDecoration: "none"}}>
-                                <Paper style={{padding: '10px', backgroundColor: "#c8e6c9"}}>
+                                <Paper key={index} style={{padding: '10px', backgroundColor: "#c8e6c9"}}>
                                     <Typography variant='h6'>
                                         {temp.title}
                                     </Typography>

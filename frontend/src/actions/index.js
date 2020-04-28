@@ -1,6 +1,7 @@
 import * as actionTypes from './types';
 
 import * as axios from 'axios';
+import history from "../history";
 
 
 export const authStart = () => {
@@ -73,11 +74,10 @@ export const authLogout = () => {
         });
         localStorage.removeItem('token');
         localStorage.removeItem('username');
-        dispatch(() => {
-            return {
-                type: actionTypes.AUTH_LOGOUT
-            }
-        })
+        dispatch({
+            type: actionTypes.AUTH_LOGOUT
+        });
+        history.push('/');
     }
 };
 
