@@ -5,6 +5,7 @@ import {Grid} from "@material-ui/core";
 import SideNav from "../layouts/SideNav";
 import {connect} from "react-redux";
 import {fetchNews} from "../actions/newsActions";
+import LineChart from "../layouts/LineChart";
 
 class HomePage extends React.Component {
 
@@ -14,11 +15,12 @@ class HomePage extends React.Component {
 
     render() {
         return (
-            <Grid container spacing={1}>
-                <Grid item sm={2}>
+            <Grid container spacing={0}>
+                <Grid item sm={3}>
                     <SideNav/>
                 </Grid>
-                <Grid item sm={10}>
+                <Grid item sm={9}>
+                    <LineChart/>
                     <NewsHelper {...this.props}/>
                 </Grid>
             </Grid>

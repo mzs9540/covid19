@@ -28,7 +28,6 @@ export const fetchStats = () => {
         dispatch(statsFetchStart());
         try {
             const res = await awsApi.get('/api/stats');
-            console.log(res);
             dispatch(statsFetchSuccess(res.data));
         } catch(err) {
             dispatch(statsFetchFail(err));

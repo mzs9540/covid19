@@ -1,7 +1,7 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
-import TableBody from '@material-ui/core/TableBody';
+import {TableBody, Divider} from '@material-ui/core';
 import TableCell from '@material-ui/core/TableCell';
 import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
@@ -18,17 +18,16 @@ const useStyles = makeStyles({
 export default function DenseTable(props) {
     const classes = useStyles();
 
-    console.log(props);
-
     return (
         <TableContainer component={Paper}>
             <Typography variant='h4' align='center'>Covid19 World Stats by Worldometer</Typography>
+            <Divider/>
             <Table className={classes.table} size="small" aria-label="Covid19 Stats">
                 <TableHead>
-                    <TableRow>
-                        <TableCell>Country</TableCell>
+                    <TableRow color='inherit' style={{backgroundColor: 'gray'}}>
+                        <TableCell >Country</TableCell>
                         <TableCell align="right">Total Case</TableCell>
-                        <TableCell align="right">New Case</TableCell>
+                        <TableCell align="right" style={{backgroundColor: 'red'}}>New Case</TableCell>
                         <TableCell align="right">Total Recovered</TableCell>
                         <TableCell align="right">Active Case</TableCell>
                         <TableCell>Cases Per Million</TableCell>
@@ -44,7 +43,8 @@ export default function DenseTable(props) {
                                 {row.country}
                             </TableCell>
                             <TableCell align="right">{row.total_case}</TableCell>
-                            <TableCell align="right">{row.new_case}</TableCell>
+                            <TableCell align="right" style={{backgroundColor: 'red'}}>
+                                {row.new_case}</TableCell>
                             <TableCell align="right">{row.total_recovered}</TableCell>
                             <TableCell align="right">{row.active_case}</TableCell>
                             <TableCell align="right">{row.cases_per_million}</TableCell>

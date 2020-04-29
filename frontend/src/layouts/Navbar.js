@@ -1,7 +1,7 @@
 import React from 'react';
 import {AppBar, Toolbar, Typography} from "@material-ui/core";
 import SideMenu from "./SideMenu";
-import {Link, Router} from "react-router-dom";
+import {Link} from "react-router-dom";
 import {connect} from "react-redux";
 
 
@@ -17,7 +17,7 @@ class NavBar extends React.Component {
                                     align='center'>
                             Covid19
                             <br/>
-                            <Typography variant='srOnly'>
+                            <Typography>
                                 Together We Fought, Together We Won
                             </Typography>
                         </Typography>

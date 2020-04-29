@@ -15,11 +15,11 @@ class News extends React.Component {
     render() {
         console.log(this.props.news);
         return (
-            <Grid container spacing={1}>
-                <Grid item sm={2} key={1}>
+            <Grid container spacing={0}>
+                <Grid item sm={3} key={1}>
                     <SideNav/>
                 </Grid>
-                <Grid item sm={10} key={2}>
+                <Grid item sm={9} key={2}>
                     <NewsHelper {...this.props}/>
                 </Grid>
             </Grid>
