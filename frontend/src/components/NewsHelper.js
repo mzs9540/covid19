@@ -18,8 +18,7 @@ const NewsHelper = (props) => {
                         <div key={index}>
                             <a href={temp.href} target='_blank'
                                rel="noreferrer noopener" style={{textDecoration: "none"}}>
-                                <Paper  elevation={3}
-                                       style={{padding: '10px', backgroundColor: "#c8e6c9"}}>
+                                <Paper elevation={3} style={{padding: '10px'}}>
                                     <Typography variant='h6'>
                                         {temp.title}
                                     </Typography>

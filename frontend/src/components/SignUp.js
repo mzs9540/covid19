@@ -4,8 +4,8 @@ import {Field, reduxForm} from "redux-form";
 import {connect} from "react-redux";
 import {authSignUp} from "../actions";
 import {Link} from "react-router-dom";
-import Typography from "@material-ui/core/Typography";
-import Paper from "@material-ui/core/Paper";
+import {Typography, Divider, Paper} from "@material-ui/core";
+
 
 class SignUp extends React.Component{
 
@@ -24,8 +24,12 @@ class SignUp extends React.Component{
         return(
             <div>
                 <Container maxWidth='sm'>
-                    <Paper elevation={3} style={{textAlign: 'center', padding: '30px'}}>
+                    <Paper elevation={3} className='border-decorate'
+                           style={{textAlign: 'center', padding: '30px',}}>
                         <Typography variant='h3'>Sign Up</Typography>
+                        <br/>
+                        <Divider/>
+                        <br/>
                     <form onSubmit={this.props.handleSubmit(this.onSubmit)}>
                         <Field name="name" component={this.renderInput} type="text" id="name"
                                label="Full Name"
@@ -40,12 +44,15 @@ class SignUp extends React.Component{
                                label="Enter Password"
                                margin="normal"/>
                         <br/>
-                        <Fab variant="extended" aria-label="Signup" type='submit'>
+                        <Fab variant="extended" aria-label="Signup" type='submit'
+                             className='button-decorate'>
                             Signup
                         </Fab>
-                        or
-                        <Link to='/login'>Login</Link>
                     </form>
+                        <br/>
+                        <Divider/>
+                        <br/>
+                        <Link to='/login'> or Login</Link>
                     </Paper>
                 </Container>
             </div>

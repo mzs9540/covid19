@@ -4,6 +4,6 @@ from stats import views
 app_name = 'stats'
 
 urlpatterns = [
-    path('upload/', views.CSVParser.as_view(), name='upload_stat_world'),
-    path('', views.WorldStatListView.as_view(), name='stats')
+    path('upload/<country>', views.CSVParser.as_view(), name='upload_stat_world'),
+    path('<stats>/', views.StatListView.as_view(), name='stats')
 ]

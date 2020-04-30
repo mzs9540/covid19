@@ -11,7 +11,7 @@ import Typography from "@material-ui/core/Typography";
 
 const useStyles = makeStyles({
     table: {
-        minWidth: 650,
+        width: '100%',
     },
 });
 
@@ -20,8 +20,10 @@ export default function DenseTable(props) {
 
     return (
         <TableContainer component={Paper}>
-            <Typography variant='h4' align='center'>Covid19 World Stats by Worldometer</Typography>
+            <Typography variant='h3' align='center'>Covid19 World Stats by Worldometer</Typography>
             <Divider/>
+            <Divider/>
+            <br/>
             <Table className={classes.table} size="small" aria-label="Covid19 Stats">
                 <TableHead>
                     <TableRow color='inherit' style={{backgroundColor: 'gray'}}>
@@ -55,6 +57,7 @@ export default function DenseTable(props) {
                     ))}
                 </TableBody>
             </Table>
+            <br/>
         </TableContainer>
     );
 }

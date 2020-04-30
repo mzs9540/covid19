@@ -52,9 +52,7 @@ export const authSignUp = (email, password, name) => {
                 password,
                 name
             });
-            const token = res.data.key;
-            localStorage.setItem('token', token);
-            dispatch(authSuccess(token, email))
+            dispatch(authLogin(email, password));
         } catch (e) {
             dispatch(authFail(e))
         }

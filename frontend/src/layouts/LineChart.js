@@ -1,42 +1,66 @@
 import React, {Component} from "react";
 import {Line} from 'react-chartjs-2';
+import {Container, Paper} from "@material-ui/core";
 
 
-const state = {
-    labels: ['January', 'February', 'March',
-        'April', 'May'],
-    datasets: [
-        {
-            label: 'Rainfall',
-            fill: false,
-            lineTension: 0.5,
-            backgroundColor: 'rgba(75,192,192,1)',
-            borderColor: 'rgba(0,0,0,1)',
-            borderWidth: 2,
-            data: [65, 59, 80, 81, 56]
-        }
-    ]
-};
+class LineChart extends Component {
 
-export default class LineChart extends React.Component {
     render() {
         return (
-            <div>
-                <Line
-                    data={state}
-                    options={{
-                        title:{
-                            display:true,
-                            text:'Average Rainfall per month',
-                            fontSize:20
-                        },
-                        legend:{
-                            display:true,
-                            position:'right'
-                        }
-                    }}
-                />
-            </div>
+            <Container maxWidth='md'>
+                <Paper elevation={3}>
+                    <Line
+                        data={{
+                            labels: this.props.stats.labels,
+                            datasets: [
+                                {
+                                    label: this.props.stats.label,
+                                    fill: false,
+                                    lineTension: 0.5,
+                                    borderColor: 'white',
+                                    borderWidth: 2,
+                                    data: this.props.stats.data,
+                                }
+                            ]
+                        }}
+                        options={{
+                            backgroundColor: "#424242",
+                            title:{
+                                display:true,
+                                text: this.props.stats.title,
+                                fontSize:20,
+                                fontColor: '#fff'
+                            },
+                            label: {
+                                fontColor: '#fff'
+                            },
+                            legend:{
+                                display:true,
+                                position:'bottom',
+                                fontColor: '#fff',
+                                labels: {
+                                    fontColor: '#fff'
+                                }
+                            },
+                            scales: {
+                                yAxes: [{
+                                    ticks: {
+                                        fontColor: '#fff'
+                                    },
+                                }],
+                                xAxes: [{
+                                    ticks: {
+                                        fontColor: '#fff'
+                                    },
+                                }]
+                            }
+                        }}
+                    />
+                </Paper>
+            </Container>
         );
     }
 }
+
+
+export default LineChart;

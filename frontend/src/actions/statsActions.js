@@ -3,32 +3,43 @@ import * as actionTypes from './types';
 import awsApi from "../api/awsApi";
 
 
-export const statsFetchStart = () => {
+const statsFetchStart = () => {
     return {
         type: actionTypes.STATS_FETCH_START
     }
 };
 
-export const statsFetchSuccess = stats => {
+const statsFetchSuccess = stats => {
     return {
         type: actionTypes.STATS_FETCH_SUCCESS,
         payload: stats
     }
 };
 
-export const statsFetchFail = err => {
+const statsWorldFetchSuccess = stats => {
+    return {
+        type: actionTypes.WORLD_STATS_FETCH_SUCCESS,
+        payload: stats
+    }
+};
+
+const statsFetchFail = err => {
     return {
         type: actionTypes.STATS_FETCH_FAIL,
         payload: err
     }
 };
 
-export const fetchStats = () => {
+export const fetchStats = (stats) => {
     return async dispatch => {
         dispatch(statsFetchStart());
         try {
-            const res = await awsApi.get('/api/stats');
-            dispatch(statsFetchSuccess(res.data));
+            const res = await awsApi.get(`/api/stats/${stats}`);
+            if (stats === 'world'){
+                dispatch(statsWorldFetchSuccess(res.data))
+            } else {
+                dispatch(statsFetchSuccess(res.data));
+            }
         } catch(err) {
             dispatch(statsFetchFail(err));
         }

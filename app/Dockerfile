@@ -12,6 +12,9 @@ COPY . /app
 
 RUN mkdir -p /vol/web/media
 RUN mkdir -p /vol/web/static
+
+RUN python manage.py collectstatic --no-input
+
 RUN adduser --disabled-password user
 RUN chown -R user:user /vol/
 RUN chmod -R 755 /vol/web

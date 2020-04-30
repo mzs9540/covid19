@@ -6,7 +6,7 @@ import {Container, TextField, Fab, Box, Grid} from "@material-ui/core";
 import history from "../history";
 import SideNav from "../layouts/SideNav";
 import Paper from "@material-ui/core/Paper";
-import Typography from "@material-ui/core/Typography";
+import {Typography, Divider} from "@material-ui/core";
 import {Link} from "react-router-dom";
 
 class Login extends Component {
@@ -30,8 +30,10 @@ class Login extends Component {
                 </Grid>
                 <Grid item sm={10}>
                     <Container maxWidth='sm'>
-                        <Paper elevation={3} style={{textAlign: 'center', padding: '30px'}}>
+                        <Paper className='border-decorate' elevation={3}
+                               style={{textAlign: 'center', padding: '30px'}}>
                             <Typography variant='h3'>Login</Typography>
+                            <Divider/>
                             <form onSubmit={this.props.handleSubmit(this.onSubmit)}>
                                 <Field name="username" component={this.renderInput} type="text" id="username"
                                        label="Username"
@@ -42,13 +44,15 @@ class Login extends Component {
                                        label="Password"
                                        margin="normal"/>
                                 <br/>
-                                <Fab variant="extended" aria-label="login" type='submit'>
+                                <Fab variant="extended" aria-label="login" type='submit'
+                                     className='button-decorate'>
                                     Login
                                 </Fab>
                             </form>
                             <br/>
-                            or
-                            <Link to='/sign-up'> Sign Up</Link>
+                            <Divider/>
+                            <br/>
+                            <Link to='/sign-up'>or Sign Up</Link>
                         </Paper>
                     </Container>
                 </Grid>

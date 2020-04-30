@@ -1,0 +1,62 @@
+.border-decorate {
+    border-bottom-left-radius: 40px;
+    border-top-right-radius: 40px;
+}
+
+body {
+    background-color: #212121;
+    color: white;
+}
+
+.MuiPaper-root {
+    background-color: #424242;
+    color: white;
+}
+
+a {
+    color: white;
+}
+
+.MuiTableCell-root {
+    color: white;
+}
+
+.MuiFormLabel-root {
+    color: white;
+}
+
+.MuiDivider-root {
+    background-color: white;
+}
+
+.button-decorate {
+    background-color: black;
+    color: white;
+}
+
+body::-webkit-scrollbar {
+    width: 0.7em;
+}
+
+body::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+}
+
+body::-webkit-scrollbar-thumb {
+    background-color: darkgrey;
+    outline: 1px solid slategrey;
+}
+
+#sidenav-scrollbar::-webkit-scrollbar {
+    width: 0.5em;
+}
+
+#sidenav-scrollbar::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.5);
+    height: 80%;
+}
+
+#sidenav-scrollbar::-webkit-scrollbar-thumb {
+    background-color: darkgrey;
+    outline: 1px solid slategrey;
+}

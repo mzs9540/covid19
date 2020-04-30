@@ -1,4 +1,5 @@
 import os
+from decouple import config
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -8,7 +9,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '0_ab=*ob0=fby!6!-83huvut_+s(8(b%+ko_f2&w+5pr7nn6z4'
+SECRET_KEY = config('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
@@ -80,11 +81,11 @@ else:
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.postgresql',
-            'HOST': 'mzs-covid-19.cnfi4nywkp7q.us-east-2.rds.amazonaws.com',
-            'NAME': 'mzs_covid_19',
-            'USER': 'mzs9540',
-            'PASSWORD': 'Htcp3400!',
-            'PORT': '5432'
+            'HOST': config('HOST'),
+            'NAME': config('NAME'),
+            'USER': config('USER'),
+            'PASSWORD': config('PASSWORD'),
+            'PORT': config('PORT')
 
         }
     }
@@ -130,5 +131,5 @@ STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, "static")
 MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 AUTH_USER_MODEL = 'core.User'
-
+COLLECT_STATIC = 1
 CORS_ORIGIN_ALLOW_ALL = True

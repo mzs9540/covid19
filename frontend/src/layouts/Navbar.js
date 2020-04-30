@@ -10,7 +10,7 @@ class NavBar extends React.Component {
     render() {
         return (
             <>
-                <AppBar position='fixed' style={{backgroundColor: '#66bb6a  '}}>
+                <AppBar position='fixed' style={{backgroundColor: '#424242'}}>
                     <Toolbar >
                         <Link to='/' style={{textDecoration: "none"}}>
                         <Typography variant="h5" style={{color: 'white'}}

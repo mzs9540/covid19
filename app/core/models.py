@@ -76,7 +76,7 @@ class WorldCovidStats(models.Model):
     def __str__(self): return self.country
 
 
-class IndiaCovidStats(models.Model):
+class IndiaFullCovidStats(models.Model):
     """Store the covid19 stats of India"""
     city = models.CharField(max_length=30)
     total_case = models.CharField(max_length=20)
@@ -92,3 +92,95 @@ class IndiaCovidStats(models.Model):
     test_per_million = models.CharField(max_length=20)
 
     def __str__(self): return self.city
+
+
+class BaseCountryStats(models.Model):
+    """Base Template for Countries Stats"""
+    date = models.DateField()
+    confirmed = models.IntegerField()
+    recovered = models.IntegerField()
+    deaths = models.IntegerField()
+
+
+class ChinaCovidStats(BaseCountryStats):
+    """Store covid19 Stats from april"""
+
+    def __str__(self):
+        return '{} - {}'.format('China', self.date)
+
+
+class UsCovidStats(BaseCountryStats):
+    """Store covid19 Stats from april"""
+
+    def __str__(self):
+        return '{} - {}'.format('US', self.date)
+
+
+class GermanyCovidStats(BaseCountryStats):
+    """Store covid19 Stats from april"""
+
+    def __str__(self):
+        return '{} - {}'.format('Germany', self.date)
+
+
+class ItalyCovidStats(BaseCountryStats):
+    """Store covid19 Stats from april"""
+
+    def __str__(self):
+        return '{} - {}'.format('Italy', self.date)
+
+
+class TurkeyCovidStats(BaseCountryStats):
+    """Store covid19 Stats from april"""
+
+    def __str__(self):
+        return '{} - {}'.format('Turkey', self.date)
+
+
+class RussiaCovidStats(BaseCountryStats):
+    """Store covid19 Stats from april"""
+
+    def __str__(self):
+        return '{} - {}'.format('Russia', self.date)
+
+
+class UKCovidStats(BaseCountryStats):
+    """Store covid19 Stats from april"""
+
+    def __str__(self):
+        return '{} - {}'.format('UK', self.date)
+
+
+class UkraineCovidStats(BaseCountryStats):
+    """Store covid19 Stats from april"""
+
+    def __str__(self):
+        return '{} - {}'.format('Ukraine', self.date)
+
+
+class IranCovidStats(BaseCountryStats):
+    """Store covid19 Stats from april"""
+
+    def __str__(self):
+        return '{} - {}'.format('Iran', self.date)
+
+
+class FranceCovidStats(BaseCountryStats):
+    """Store covid19 Stats from april"""
+
+    def __str__(self):
+        return '{} - {}'.format('France', self.date)
+
+
+class SpainCovidStats(BaseCountryStats):
+    """Store covid19 Stats from april"""
+
+    def __str__(self):
+        return '{} - {}'.format('Spain', self.date)
+
+
+class IndiaCovidStats(BaseCountryStats):
+    """Store India Covid Data Date wise"""
+
+    def __str__(self):
+        return '{} - {}'.format('India', self.data)
