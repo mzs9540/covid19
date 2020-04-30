@@ -25,6 +25,8 @@ class LineChart extends Component {
                         }}
                         options={{
                             backgroundColor: "#424242",
+                            responsive: true,
+                            maintainAspectRatio: false,
                             title:{
                                 display:true,
                                 text: this.props.stats.title,

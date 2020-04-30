@@ -1,3 +1,7 @@
+canvas {
+    min-height:600px !important;
+}
+
 .border-decorate {
     border-bottom-left-radius: 40px;
     border-top-right-radius: 40px;
