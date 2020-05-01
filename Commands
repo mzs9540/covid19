@@ -4,6 +4,10 @@ To delete all the images,
 
 docker rmi -f $(docker images -a -q)
 
+sudo rm -rf covid19
+
+git clone https://github.com/mzs9540/covid19.git
+
 docker-compose run --rm app sh -c "python manage.py test && flake8"
 
 docker-compose run --rm app sh -c "python manage.py createsuperuser"
