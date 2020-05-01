@@ -27,4 +27,13 @@ services:
     container_name: web-app
     stdin_open: true
     command: >
-        sh -c "npm start"
+        sh -c "npm run build"
+
+  server:
+    build:
+      context: ./frontend/public
+      dockerfile: Dockerfile
+    volumes:
+    - ./frontend/build:/usr/share/nginx/html
+    ports:
+    - '80:80'
