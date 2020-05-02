@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-import {fetchStats} from "../actions/statsActions";
+import {fetchTable} from "../actions/tableActions";
 import {connect} from "react-redux";
 import Table from '../layouts/Table'
 import {Grid} from "@material-ui/core";
@@ -8,7 +8,7 @@ import SideNav from "../layouts/SideNav";
 class Stats extends Component {
 
     componentDidMount() {
-        this.props.fetchStats('world');
+        this.props.fetchTable('world');
     }
 
     render() {
@@ -28,9 +28,9 @@ class Stats extends Component {
 
 const mapStateToProps = state => {
     return {
-        stats: state.stats.worldStats,
+        stats: state.stats.tableData,
         keys: state.stats.keys,
     }
 };
 
-export default connect(mapStateToProps, {fetchStats})(Stats);
+export default connect(mapStateToProps, {fetchTable})(Stats);

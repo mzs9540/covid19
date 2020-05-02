@@ -12,7 +12,6 @@ class SideNav extends Component {
         bottom: 20,
         zIndex: 5,
         overflowY: 'scroll',
-        maxHeight: '70vh',
         width:'100%',
     };
 
@@ -26,7 +25,6 @@ class SideNav extends Component {
                     <ListItem button key={1} onClick={() => history.push('/who-news')}>
                         <ListItemText primary={'News by WHO'} />
                     </ListItem>
-                    <Divider/>
                     <ListItem button key={2} onClick={() => history.push('/stats')}>
                         <ListItemText primary={'Covid19 World Stats'} />
                     </ListItem>

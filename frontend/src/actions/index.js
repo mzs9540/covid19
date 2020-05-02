@@ -47,7 +47,7 @@ export const authLogin = (email, password) => {
 export const authSignUp = (email, password, name) => {
     return async dispatch => {
         try {
-            const res = await awsApi.post('/api/user/create/', {
+            await awsApi.post('/api/user/create/', {
                 email,
                 password,
                 name

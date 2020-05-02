@@ -2,8 +2,7 @@ import React, {Component} from "react";
 import LineChart from "../layouts/LineChart";
 import {fetchStats} from "../actions/statsActions";
 import {connect} from "react-redux";
-import {Typography, Divider, Grid} from "@material-ui/core";
-import SideNav from "../layouts/SideNav";
+import {Typography, Divider} from "@material-ui/core";
 
 class StatsCountry extends Component {
 

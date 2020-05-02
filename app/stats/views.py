@@ -142,17 +142,10 @@ class StatListView(generics.ListAPIView):
     authentication_classes = (TokenAuthentication,)
 
     def get_queryset(self):
-        if self.kwargs['stats'] == 'world':
-            self.kwargs['model'] = models.WorldCovidStats
-            return models.WorldCovidStats.objects.all()
 
-        elif self.kwargs['stats'] == 'india':
+        if self.kwargs['stats'] == 'india':
             self.kwargs['model'] = models.IndiaCovidStats
             return models.IndiaCovidStats.objects.all()
-
-        elif self.kwargs['stats'] == 'india-stats':
-            self.kwargs['model'] = models.IndiaFullCovidStats
-            return models.IndiaFullCovidStats.objects.all()
 
         elif self.kwargs['stats'] == 'iran':
             self.kwargs['model'] = models.IranCovidStats
@@ -201,3 +194,19 @@ class StatListView(generics.ListAPIView):
     def get_serializer_class(self):
         serializers.StatsSerializer.Meta.model = self.kwargs['model']
         return serializers.StatsSerializer
+
+
+class IndiaTableView(generics.ListAPIView):
+    """Views for Managing India Table Data"""
+    queryset = models.IndiaFullCovidStats.objects.all()
+    serializer_class = serializers.IndiaStatsSerializer
+    permission_classes = (PermissionsForStaff,)
+    authentication_classes = (TokenAuthentication,)
+
+
+class WorldTableView(generics.ListAPIView):
+    """Views for Managing India Table Data"""
+    queryset = models.WorldCovidStats.objects.all()
+    serializer_class = serializers.WorldStatsSerializer
+    permission_classes = (PermissionsForStaff,)
+    authentication_classes = (TokenAuthentication,)

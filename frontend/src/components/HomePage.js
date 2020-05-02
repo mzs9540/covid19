@@ -7,14 +7,14 @@ import {connect} from "react-redux";
 import {fetchNews} from "../actions/newsActions";
 
 import Table from '../layouts/Table';
-import {fetchStats} from "../actions/statsActions";
 import Divider from "@material-ui/core/Divider";
+import {fetchTable} from "../actions/tableActions";
 
 class HomePage extends React.Component {
 
     componentDidMount() {
         this.props.fetchNews('who-news');
-        this.props.fetchStats('india-stats');
+        this.props.fetchTable('india-stats');
         this.props.fetchNews('updates/india')
     }
 
@@ -24,8 +24,8 @@ class HomePage extends React.Component {
                 <Grid item sm={2}>
                     <SideNav/>
                 </Grid>
-                <Grid item sm={9} style={{marginLeft: "auto"}}>
-                    <Table stats={this.props.stats.stats}
+                <Grid item sm={9} style={{marginLeft: "auto", width: '100%'}}>
+                    <Table stats={this.props.stats.tableData}
                            keys={this.props.stats.keys} title={'State wise Covid19 Data - India'}/>
                            <br/>
                            <Divider/>
@@ -50,4 +50,4 @@ const mapStateToProps = state => {
     }
 };
 
-export default connect(mapStateToProps, {fetchNews, fetchStats})(HomePage);
+export default connect(mapStateToProps, {fetchNews, fetchTable})(HomePage);

@@ -4,18 +4,20 @@ import NewsHelper from "./NewsHelper";
 import {Grid} from "@material-ui/core";
 import SideNav from "../layouts/SideNav";
 import {connect} from "react-redux";
+import Table from '../layouts/Table';
+import Divider from "@material-ui/core/Divider";
+
+import StatsCountry from "./StatsCountry";
+import {fetchTable} from "../actions/tableActions";
+import {fetchStats} from "../actions/statsActions";
 import {fetchNews} from "../actions/newsActions";
 
-import Table from '../layouts/Table';
-import {fetchStats} from "../actions/statsActions";
-import Divider from "@material-ui/core/Divider";
-import StatsCountry from "./StatsCountry";
-
-class HomePage extends React.Component {
+class IndiaStats extends React.Component {
 
     componentDidMount() {
         this.props.fetchNews('who-news');
-        this.props.fetchStats('india-stats');
+        this.props.fetchTable('india-stats');
+        this.props.fetchStats('india');
         this.props.fetchNews('updates/india')
     }
 
@@ -26,7 +28,7 @@ class HomePage extends React.Component {
                     <SideNav/>
                 </Grid>
                 <Grid item sm={9} style={{marginLeft: "auto"}}>
-                    <Table stats={this.props.stats.stats}
+                    <Table stats={this.props.stats.tableData}
                            keys={this.props.stats.keys} title={'State wise Covid19 Data - India'}/>
                     <br/>
                     <Divider/>
@@ -50,4 +52,4 @@ const mapStateToProps = state => {
     }
 };
 
-export default connect(mapStateToProps, {fetchNews, fetchStats})(HomePage);
+export default connect(mapStateToProps, {fetchNews, fetchTable, fetchStats})(IndiaStats);

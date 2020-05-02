@@ -1,7 +1,7 @@
 import * as actionTypes from "../actions/types";
 
 const initialState = {
-    worldStats: [],
+    tableData: [],
     keys: [],
     stats:[],
     deaths: [],
@@ -23,23 +23,21 @@ const helper = (state, action) => {
         recovered.push(stat.recovered);
         date.push(stat.date);
     });
-    return {...state, worldStats: [],
+    return {...state,
         stats:deleteKey(action.payload, 'id'),
         deaths: [...deaths],
         confirmed: [...confirmed],
         recovered: [...recovered],
         date: [...date],
-        keys: getKeys(action.payload[0]),
         error: null,
         loading: null}
 };
 
 const deleteKey = (arrObj, key) => {
-    let arr = arrObj.map(obj => {
+    return arrObj.map(obj => {
         delete obj[key];
         return obj
     });
-    return arr
 };
 
 const getKeys = obj => {
@@ -48,8 +46,11 @@ const getKeys = obj => {
 
 const reducer = (state= initialState, action) => {
     switch (action.type) {
-        case actionTypes.WORLD_STATS_FETCH_SUCCESS:
-            return {...state, worldStats: deleteKey(action.payload, 'id'),
+        case actionTypes.TABLE_DATA_FETCH_SUCCESS:
+            return {...state, tableData: deleteKey(action.payload, 'id'),
+                error: null, loading: false, keys: getKeys(action.payload[0])};
+        case actionTypes.WORLD_TABLE_FETCH_SUCCESS:
+            return {...state, tableData: deleteKey(action.payload, 'id'),
                 error: null, loading: false, keys: getKeys(action.payload[0])};
         case actionTypes.STATS_FETCH_START:
             return {...state, loading: true, error: null};

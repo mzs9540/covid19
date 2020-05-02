@@ -68,7 +68,15 @@ canvas {
 
 @media only screen and (max-width: 768px) {
     canvas {
-        height:400px !important;
+        height:350px !important;
         width: 100%; !important;
+    }
+
+    #sidenav-scrollbar {
+        height: 400px;
+    }
+
+    .MuiTable-root, .MuiTableContainer-root {
+        max-width: 100vw;
     }
 }
