@@ -76,22 +76,27 @@ class WorldCovidStats(models.Model):
     def __str__(self): return self.country
 
 
+class IndiaCovid19Update(models.Model):
+    """Store the covid19 Update of India"""
+    title = models.CharField(max_length=1000)
+    date = models.DateField()
+    href = models.CharField(max_length=2000)
+
+    class Meta:
+        ordering = ['-date']
+
+
 class IndiaFullCovidStats(models.Model):
     """Store the covid19 stats of India"""
-    city = models.CharField(max_length=30)
+    state = models.CharField(max_length=30)
     total_case = models.CharField(max_length=20)
-    new_case = models.CharField(max_length=20)
     total_death = models.CharField(max_length=20)
-    new_death = models.CharField(max_length=20)
     total_recovered = models.CharField(max_length=20)
-    active_case = models.CharField(max_length=20)
-    serious_critical = models.CharField(max_length=20)
-    cases_per_million = models.CharField(max_length=20)
-    deaths_per_million = models.CharField(max_length=20)
-    total_test = models.CharField(max_length=20)
-    test_per_million = models.CharField(max_length=20)
 
-    def __str__(self): return self.city
+    class Meta:
+        ordering = ['state']
+
+    def __str__(self): return f'{self.state} - {self.total_case}'
 
 
 class BaseCountryStats(models.Model):
@@ -183,4 +188,4 @@ class IndiaCovidStats(BaseCountryStats):
     """Store India Covid Data Date wise"""
 
     def __str__(self):
-        return '{} - {}'.format('India', self.data)
+        return '{} - {}'.format('India', self.date)

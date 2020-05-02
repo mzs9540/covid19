@@ -45,14 +45,9 @@ class FirstSpider(scrapy.Spider):
         for data in t.xpath('@href'):
             href.append(data.get())
 
-        length = min(len(date), len(href), len(title))
-        today = datetime.today().date()
-        yesterday = today - timedelta(days=1)
-        for i in range(length):
+        for i in range(20):
             items = Covid19NewsCrawlerItem()
-            if yesterday == date[i]:
-                print(date[i], 'hooooooolaaa')
-            it, created = CovidNews.objects.get_or_create(
+            item, created = CovidNews.objects.get_or_create(
                 title=title[i],
                 date=date[i],
                 defaults={'href': href[i]})

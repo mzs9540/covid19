@@ -18,7 +18,8 @@ class Stats extends Component {
                     <SideNav/>
                 </Grid>
                 <Grid item sm={9} key={2} style={{marginLeft: "auto"}}>
-                    <Table stats={this.props.stats}/>
+                    <Table stats={this.props.stats} keys={this.props.keys}
+                           title={'Covid19 Stats by Worldometer'}/>
                 </Grid>
             </Grid>
         )
@@ -27,7 +28,8 @@ class Stats extends Component {
 
 const mapStateToProps = state => {
     return {
-        stats: state.stats.worldStats
+        stats: state.stats.worldStats,
+        keys: state.stats.keys,
     }
 };
 

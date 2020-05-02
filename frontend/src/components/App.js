@@ -10,6 +10,7 @@ import {connect} from "react-redux";
 import {authCheckLogin} from "../actions";
 import Stats from "./Stats";
 import statsHelper from "./StatsHelper";
+import IndiaStats from "./IndiaStats";
 
 
 class App extends Component {
@@ -27,6 +28,7 @@ class App extends Component {
                 <Route path='/login' exact component={Login}/>
                 <Route path='/sign-up' exact component={SignUp}/>
                 <Route path='/stats/' exact component={Stats}/>
+                <Route path='/updates/india' exact component={IndiaStats}/>
                 <Route path='/stats/:country' exact component={statsHelper}/>
             </Router>
         );

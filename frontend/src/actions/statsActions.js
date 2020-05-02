@@ -33,15 +33,12 @@ const statsFetchFail = err => {
 export const fetchStats = (stats) => {
     return async dispatch => {
         dispatch(statsFetchStart());
-        try {
             const res = await awsApi.get(`/api/stats/${stats}`);
             if (stats === 'world'){
                 dispatch(statsWorldFetchSuccess(res.data))
             } else {
                 dispatch(statsFetchSuccess(res.data));
             }
-        } catch(err) {
-            dispatch(statsFetchFail(err));
-        }
+
     }
 };

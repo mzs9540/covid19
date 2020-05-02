@@ -17,3 +17,16 @@ class Covid19NewsCrawlerItem(scrapy.Item):
     title = scrapy.Field()
     href = scrapy.Field()
     date = scrapy.Field()
+
+
+class IndiaStatCrawlerItem(scrapy.Item):
+    state = scrapy.Field()
+    confirmed = scrapy.Field()
+    deaths = scrapy.Field()
+    recovered = scrapy.Field()
+
+
+class IndiaUpdateCrawlerItem(scrapy.Item):
+    title = scrapy.Field()
+    href = scrapy.Field()
+    date = scrapy.Field()

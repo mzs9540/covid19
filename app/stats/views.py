@@ -143,56 +143,61 @@ class StatListView(generics.ListAPIView):
 
     def get_queryset(self):
         if self.kwargs['stats'] == 'world':
+            self.kwargs['model'] = models.WorldCovidStats
             return models.WorldCovidStats.objects.all()
+
         elif self.kwargs['stats'] == 'india':
+            self.kwargs['model'] = models.IndiaCovidStats
             return models.IndiaCovidStats.objects.all()
+
+        elif self.kwargs['stats'] == 'india-stats':
+            self.kwargs['model'] = models.IndiaFullCovidStats
+            return models.IndiaFullCovidStats.objects.all()
+
         elif self.kwargs['stats'] == 'iran':
+            self.kwargs['model'] = models.IranCovidStats
             return models.IranCovidStats.objects.all()
+
         elif self.kwargs['stats'] == 'turkey':
+            self.kwargs['model'] = models.TurkeyCovidStats
             return models.TurkeyCovidStats.objects.all()
+
         elif self.kwargs['stats'] == 'uk':
+            self.kwargs['model'] = models.UKCovidStats
             return models.UKCovidStats.objects.all()
+
         elif self.kwargs['stats'] == 'us':
+            self.kwargs['model'] = models.UsCovidStats
             return models.UsCovidStats.objects.all()
+
         elif self.kwargs['stats'] == 'germany':
+            self.kwargs['model'] = models.GermanyCovidStats
             return models.GermanyCovidStats.objects.all()
+
         elif self.kwargs['stats'] == 'spain':
+            self.kwargs['model'] = models.SpainCovidStats
             return models.SpainCovidStats.objects.all()
+
         elif self.kwargs['stats'] == 'italy':
+            self.kwargs['model'] = models.ItalyCovidStats
             return models.ItalyCovidStats.objects.all()
+
         elif self.kwargs['stats'] == 'ukraine':
+            self.kwargs['model'] = models.UkraineCovidStats
             return models.UkraineCovidStats.objects.all()
+
         elif self.kwargs['stats'] == 'france':
+            self.kwargs['model'] = models.FranceCovidStats
             return models.FranceCovidStats.objects.all()
+
         elif self.kwargs['stats'] == 'russia':
+            self.kwargs['model'] = models.RussiaCovidStats
             return models.RussiaCovidStats.objects.all()
+
         elif self.kwargs['stats'] == 'china':
+            self.kwargs['model'] = models.ChinaCovidStats
             return models.ChinaCovidStats.objects.all()
 
     def get_serializer_class(self):
-        if self.kwargs['stats'] == 'world':
-            return serializers.WorldSerializer
-        elif self.kwargs['stats'] == 'india':
-            return serializers.IndiaSerializer
-        elif self.kwargs['stats'] == 'iran':
-            return serializers.IranSerializer
-        elif self.kwargs['stats'] == 'turkey':
-            return serializers.TurkeySerializer
-        elif self.kwargs['stats'] == 'uk':
-            return serializers.UkSerializer
-        elif self.kwargs['stats'] == 'us':
-            return serializers.UsSerializer
-        elif self.kwargs['stats'] == 'germany':
-            return serializers.GermanySerializer
-        elif self.kwargs['stats'] == 'spain':
-            return serializers.SpainSerializer
-        elif self.kwargs['stats'] == 'italy':
-            return serializers.ItalySerializer
-        elif self.kwargs['stats'] == 'ukraine':
-            return serializers.UkraineSerializer
-        elif self.kwargs['stats'] == 'france':
-            return serializers.FranceSerializer
-        elif self.kwargs['stats'] == 'russia':
-            return serializers.RussiaSerializer
-        elif self.kwargs['stats'] == 'china':
-            return serializers.ChinaSerializer
+        serializers.StatsSerializer.Meta.model = self.kwargs['model']
+        return serializers.StatsSerializer

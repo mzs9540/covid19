@@ -1,9 +1,9 @@
 import React, {Component} from "react";
-import LineChart from "./LineChart";
+import LineChart from "../layouts/LineChart";
 import {fetchStats} from "../actions/statsActions";
 import {connect} from "react-redux";
 import {Typography, Divider, Grid} from "@material-ui/core";
-import SideNav from "./SideNav";
+import SideNav from "../layouts/SideNav";
 
 class StatsCountry extends Component {
 
@@ -19,11 +19,7 @@ class StatsCountry extends Component {
 
     render() {
         return(
-            <Grid container spacing={0}>
-                <Grid item sm={2} key={1}>
-                    <SideNav/>
-                </Grid>
-                <Grid item sm={10} key={2}>
+            <>
                 <Typography variant='h2' align='center'>
                     Past 30 days stats of {this.props.country.toUpperCase()}
                 </Typography>
@@ -52,8 +48,7 @@ class StatsCountry extends Component {
                         title: 'Total Deaths',
                         labels: this.props.stats.date,
                         label: 'Deaths',}}/>
-                </Grid>
-            </Grid>
+        </>
         )
     }
 }

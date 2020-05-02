@@ -9,6 +9,7 @@ import {fetchNews} from "../actions/newsActions";
 import Table from '../layouts/Table';
 import {fetchStats} from "../actions/statsActions";
 import Divider from "@material-ui/core/Divider";
+import StatsCountry from "./StatsCountry";
 
 class HomePage extends React.Component {
 
@@ -27,16 +28,15 @@ class HomePage extends React.Component {
                 <Grid item sm={9} style={{marginLeft: "auto"}}>
                     <Table stats={this.props.stats.stats}
                            keys={this.props.stats.keys} title={'State wise Covid19 Data - India'}/>
-                           <br/>
-                           <Divider/>
-                           <br/>
-                    <NewsHelper news={this.props.news.updates ? this.props.news.updates.slice(0, 15) : []}
-                                heading={'Updates by Indian Government'}/>
                     <br/>
                     <Divider/>
                     <br/>
-                    <NewsHelper news={this.props.news.whoNews.slice(0, 9)}
-                                heading={'Latest News by WHO'}/>
+                    <StatsCountry country={'india'}/>
+                    <br/>
+                    <Divider/>
+                    <br/>
+                    <NewsHelper news={this.props.news.updates.slice(0, 15)}
+                                heading={'Updates by Indian Government'}/>
                 </Grid>
             </Grid>
         )

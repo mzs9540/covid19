@@ -3,8 +3,6 @@ import {Container, Paper, Typography, Divider} from "@material-ui/core";
 
 const NewsHelper = (props) => {
 
-    const news = props.location.pathname === '/' ? props.news.slice(0,5) : props.news;
-
     return (
         <Container maxWidth="md">
             <Typography variant='h3' align='center'>
@@ -13,7 +11,8 @@ const NewsHelper = (props) => {
             <Divider/>
             <br/>
             {
-                news.map((temp, index) => {
+                props.news ?
+                props.news.map((temp, index) => {
                     return (
                         <div key={index}>
                             <a href={temp.href} target='_blank'
@@ -31,7 +30,7 @@ const NewsHelper = (props) => {
                             <br/>
                         </div>
                     )
-                })
+                }) : null
             }
         </Container>
     )
