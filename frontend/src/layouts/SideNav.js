@@ -19,13 +19,21 @@ class SideNav extends Component {
         return (
             <Paper id='sidenav-scrollbar' elevation={3} style={this.root}>
                 <List>
-                    <ListItem button key={1} onClick={() => history.push('/updates/india')}>
-                        <ListItemText primary={'India Updates'} />
+                    <Typography variant='h6' align='center'>
+                        Useful Links
+                    </Typography>
+                    <Divider/>
+                    <Divider/>
+                    <ListItem button key={15} onClick={() => history.push('/updates/india-full')}>
+                        <ListItemText primary={'Updates by Indian Gov'} />
                     </ListItem>
-                    <ListItem button key={1} onClick={() => history.push('/who-news')}>
+                    <ListItem button key={1} onClick={() => history.push('/updates/india')}>
+                        <ListItemText primary={'India Stats'} />
+                    </ListItem>
+                    <ListItem button key={2} onClick={() => history.push('/who-news')}>
                         <ListItemText primary={'News by WHO'} />
                     </ListItem>
-                    <ListItem button key={2} onClick={() => history.push('/stats')}>
+                    <ListItem button key={14} onClick={() => history.push('/stats')}>
                         <ListItemText primary={'Covid19 World Stats'} />
                     </ListItem>
                     <Divider/>

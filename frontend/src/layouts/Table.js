@@ -26,9 +26,9 @@ export default function DenseTable(props) {
             <br/>
             <Table className={classes.table} size="small" aria-label="Covid19 Stats">
                 <TableHead>
-                    <TableRow color='inherit' style={{backgroundColor: 'gray'}}>
+                    <TableRow key={'was'} color='inherit' style={{backgroundColor: 'gray'}}>
                         {props.keys ? props.keys.map((key, index) =>
-                            <TableCell align='center'><Typography variant='subtitle2'>{key}</Typography></TableCell>) : null}
+                            <TableCell align='center' key={index}><Typography variant='subtitle2'>{key}</Typography></TableCell>) : null}
                     </TableRow>
                 </TableHead>
                 <TableBody>
@@ -36,9 +36,9 @@ export default function DenseTable(props) {
                     {
                         props.stats ?
                             props.stats.map((row, index) => (
-                                <TableRow key={index}>
-                                    {Object.values(row).map(val =>
-                                        <TableCell component="th" scope="row" align='center'>
+                                <TableRow key={index*Math.random()}>
+                                    {Object.values(row).map((val,i) =>
+                                        <TableCell key={i+val+23} component="th" scope="row" align='center'>
                                             {val}
                                         </TableCell>
                                     )

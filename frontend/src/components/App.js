@@ -11,6 +11,7 @@ import {authCheckLogin} from "../actions";
 import Stats from "./Stats";
 import statsHelper from "./StatsHelper";
 import IndiaStats from "./IndiaStats";
+import IndiaUpdates from "./IndiaUpdates";
 
 
 class App extends Component {
@@ -29,6 +30,7 @@ class App extends Component {
                 <Route path='/sign-up' exact component={SignUp}/>
                 <Route path='/stats/' exact component={Stats}/>
                 <Route path='/updates/india' exact component={IndiaStats}/>
+                <Route path='/updates/india-full' exact component={IndiaUpdates}/>
                 <Route path='/stats/:country' exact component={statsHelper}/>
             </Router>
         );

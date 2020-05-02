@@ -6,10 +6,10 @@ import {Grid} from "@material-ui/core";
 import SideNav from "../layouts/SideNav";
 import {fetchNews} from "../actions/newsActions";
 
-class News extends React.Component {
+class IndiaUpdates extends React.Component {
 
     componentDidMount() {
-        this.props.fetchNews();
+        this.props.fetchNews('updates/india');
     }
 
     render() {
@@ -28,11 +28,11 @@ class News extends React.Component {
 
 const mapStateToProps = state => {
     return {
-        news: state.news.whoNews,
+        news: state.news.updates,
         newsError: state.news.error,
         newsLoading: state.news.loading,
-        heading: 'News Published by WHO'
+        heading: 'Updates by India Gov'
     }
 };
 
-export default connect(mapStateToProps, {fetchNews})(News);
+export default connect(mapStateToProps, {fetchNews})(IndiaUpdates);
