@@ -55,7 +55,7 @@ class CSVParser(APIView):
                         'total_death': row[6],
                         'new_death': row[7]
                     }
-                    serializer = serializers.WorldSerializer(data=data)
+                    serializer = serializers.WorldStatsSerializer(data=data)
                     if serializer.is_valid():
                         serializer.save()
         elif kwargs['country'] == 'india':

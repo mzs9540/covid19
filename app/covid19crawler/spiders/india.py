@@ -21,7 +21,7 @@ class IndiaCovid19Stats(scrapy.Spider):
 
     custom_settings = {
         'ITEM_PIPELINES': {
-            'covid19crawler.pipelines.IndiaStateCrawlerPipeline': 400,
+            'covid19crawler.pipelines.IndiaStatsCrawlerPipeline': 400,
         }
     }
 
@@ -30,10 +30,10 @@ class IndiaCovid19Stats(scrapy.Spider):
         state = response.css('.field-type-list-text .even::text').extract()
         recovered = response.css('.field-name-field-cured .even::text').extract()
         deaths = response.css('.field-name-field-deaths .even::text').extract()
-
+        IndiaFullCovidStats.objects.all().delete()
         for i in range(len(state)):
             items = IndiaStatCrawlerItem()
-            it, created = IndiaFullCovidStats.objects.get_or_create(
+            IndiaFullCovidStats.objects.create(
                 state=state[i],
                 total_death=deaths[i],
                 defaults={'total_case': confirmed[i],
@@ -55,7 +55,7 @@ class IndiaCovid19Updates(scrapy.Spider):
 
     custom_settings = {
         'ITEM_PIPELINES': {
-            'covid19crawler.pipelines.IndiaStateCrawlerPipeline': 400,
+            'covid19crawler.pipelines.IndiaStatsCrawlerPipeline': 400,
         }
     }
 

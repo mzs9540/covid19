@@ -11,7 +11,7 @@ class Covid19NewsCrawlerPipeline(object):
         return item
 
 
-class IndiaStateCrawlerPipeline(object):
+class IndiaStatsCrawlerPipeline(object):
     def process_item(self, item, spider):
         return item
 

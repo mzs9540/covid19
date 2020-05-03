@@ -26,6 +26,14 @@ class IndiaStatCrawlerItem(scrapy.Item):
     recovered = scrapy.Field()
 
 
+class StatsCrawlerItem(scrapy.Item):
+    date = scrapy.Field()
+    country = scrapy.Field()
+    confirmed = scrapy.Field()
+    recovered = scrapy.Field()
+    deaths = scrapy.Field()
+
+
 class IndiaUpdateCrawlerItem(scrapy.Item):
     title = scrapy.Field()
     href = scrapy.Field()
