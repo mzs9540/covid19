@@ -28,23 +28,48 @@ export default function DenseTable(props) {
                 <TableHead>
                     <TableRow key={'was'} color='inherit' style={{backgroundColor: 'gray'}}>
                         {props.keys ? props.keys.map((key, index) =>
-                            <TableCell align='center' key={index}><Typography variant='subtitle2'>{key}</Typography></TableCell>) : null}
+                            <TableCell align='center' key={index}><Typography variant='subtitle2'>
+                                <strong>{key}</strong>
+                            </Typography></TableCell>) : null}
                     </TableRow>
                 </TableHead>
                 <TableBody>
 
                     {
                         props.stats ?
-                            props.stats.map((row, index) => (
-                                <TableRow key={index*Math.random()}>
-                                    {Object.values(row).map((val,i) =>
-                                        <TableCell key={i+val+23} component="th" scope="row" align='center'>
-                                            {val}
-                                        </TableCell>
+                            props.stats.map((row, index) => {
+                                if (index%2 === 0) {
+                                    return (
+                                        <TableRow key={index * Math.random()}>
+                                            {Object.values(row).map((val, i) =>
+                                                <TableCell key={i + val + 23}
+                                                           component="th"
+                                                           scope="row"
+                                                           align='center'>
+                                                    {val}
+                                                </TableCell>
+                                            )
+                                            }
+                                        </TableRow>
+                                    )
+                                } else {
+                                    return (
+                                        <TableRow key={index * Math.random()}>
+                                            {
+                                                Object.values(row).map((val, i) =>
+                                                    <TableCell key={i + val + 23}
+                                                               component="th"
+                                                               scope="row"
+                                                               align='center'
+                                                               style={{backgroundColor: 'black'}}>
+                                                        {val}
+                                                    </TableCell>
+                                                )
+                                            }
+                                        </TableRow>
                                     )
                                     }
-                                </TableRow>
-                            )) : null
+                            }) : null
                     }
                 </TableBody>
             </Table>

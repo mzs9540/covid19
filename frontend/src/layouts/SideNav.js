@@ -13,6 +13,7 @@ class SideNav extends Component {
         zIndex: 5,
         overflowY: 'scroll',
         width:'100%',
+        backgroundColor: '#616161',
     };
 
     render() {

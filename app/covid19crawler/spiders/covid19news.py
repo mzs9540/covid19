@@ -37,10 +37,12 @@ class FirstSpider(scrapy.Spider):
             title.append(data.get())
 
         for data in t.css('.sub-title::text'):
-            print(data.get(), 'khusiiiiiiiiiiiiiiiiiiiiiiiiiiiii')
-            date.append(datetime.strptime(
-                "-".join(data.get().replace(',', ' ').split()[:3]),
-                '%d-%B-%Y').date())
+            try:
+                date.append(datetime.strptime(
+                    "-".join(data.get().replace(',', ' ').split()[:3]),
+                    '%d-%B-%Y').date())
+            except (ValueError, TypeError):
+                date.append(datetime.now().date())
 
         for data in t.xpath('@href'):
             href.append(data.get())

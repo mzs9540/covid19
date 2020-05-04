@@ -93,6 +93,7 @@ canvas {
     }
 
     .MuiTable-root, .MuiTableContainer-root {
-        max-width: 100%;
+        max-width: 100%; !important;
+        width: 100%; !important;
     }
 }

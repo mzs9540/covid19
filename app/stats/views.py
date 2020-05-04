@@ -39,6 +39,7 @@ class CSVParser(APIView):
         # to access files
         if kwargs['country'] == 'world':
             models.WorldCovidStats.objects.all().delete()
+            print(request.data['csv'])
             with open(f"{request.data['csv']}") as csv_file:
                 csv_reader = csv.reader(csv_file, delimiter=',')
                 for row1 in csv_reader:

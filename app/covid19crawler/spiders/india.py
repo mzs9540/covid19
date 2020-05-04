@@ -36,8 +36,8 @@ class IndiaCovid19Stats(scrapy.Spider):
             IndiaFullCovidStats.objects.create(
                 state=state[i],
                 total_death=deaths[i],
-                defaults={'total_case': confirmed[i],
-                          'total_recovered': recovered[i]})
+                total_case= confirmed[i],
+                total_recovered= recovered[i])
             items['state'] = state[i]
             items['confirmed'] = confirmed[i]
             items['recovered'] = recovered[i]
@@ -65,14 +65,19 @@ class IndiaCovid19Updates(scrapy.Spider):
         title = []
         date = []
         href = response.css('.stretched-link::attr(href)').extract()
-        print(len(title), len(date), len(href))
+
         for i in range(0, len(t1), 2):
             title.append(t1[i])
 
         for i in range(1, len(t1), 2):
-            date.append(datetime.strptime(t1[i], '%Y-%m-%d').date())
-
-        print(len(title), len(date), len(href))
+            try:
+                dat = datetime.strptime(t1[i], '%Y-%m-%d').date()
+                print(dat)
+                date.append(dat)
+            except (ValueError, TypeError):
+                dat = datetime.strptime(t1[i], '%d-%m-%Y').date()
+                print(dat)
+                date.append(dat)
 
         for i in range(20):
             it, created = IndiaCovid19Update.objects.get_or_create(
