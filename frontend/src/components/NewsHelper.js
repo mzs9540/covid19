@@ -18,11 +18,11 @@ const NewsHelper = (props) => {
                             <a href={temp.href} target='_blank'
                                rel="noreferrer noopener" style={{textDecoration: "none"}}>
                                 <Paper elevation={3} style={{padding: '10px'}}>
-                                    <Typography variant='h6'>
+                                    <Typography variant='body1'>
                                         {temp.title}
                                     </Typography>
                                     <Divider/>
-                                    <Typography variant='subtitle1'>
+                                    <Typography variant='body2'>
                                         Published: {temp.date}
                                     </Typography>
                                 </Paper>

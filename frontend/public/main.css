@@ -1,6 +1,8 @@
 .border-decorate {
     border-bottom-left-radius: 40px;
     border-top-right-radius: 40px;
+    background-color: black;
+    color: white;
 }
 
 body {
@@ -27,11 +29,6 @@ a {
 
 .MuiDivider-root {
     background-color: white;
-}
-
-.button-decorate {
-    background-color: black;
-    color: white;
 }
 
 
@@ -72,6 +69,19 @@ canvas {
 }
 
 @media only screen and (max-width: 768px) {
+
+    h1 {
+        font-size: 1.8em;
+    }
+
+    h2 {
+        font-size: 1.55em;
+    }
+
+    h3 {
+        font-size: 1.25em;
+    }
+
     canvas {
         height:500px !important;
         width: 100%; !important;

@@ -18,6 +18,7 @@ class LineChart extends Component {
                                     fill: false,
                                     lineTension: 0.5,
                                     borderColor: 'white',
+                                    backgroundColor: 'blue',
                                     borderWidth: 2,
                                     data: this.props.stats.data,
                                 }

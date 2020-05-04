@@ -13,8 +13,7 @@ class NavBar extends React.Component {
                 <AppBar position='fixed' style={{backgroundColor: '#424242'}}>
                     <Toolbar >
                         <Link to='/' style={{textDecoration: "none"}}>
-                        <Typography variant="h5" style={{color: 'white'}}
-                                    align='center'>
+                        <Typography variant="h5" align='center'>
                             Covid19
                             <br/>
                             <Typography>

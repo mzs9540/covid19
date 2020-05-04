@@ -31,7 +31,7 @@ const mapStateToProps = state => {
         news: state.news.updates,
         newsError: state.news.error,
         newsLoading: state.news.loading,
-        heading: 'Updates by India Gov'
+        heading: 'Updates by India Government'
     }
 };
 

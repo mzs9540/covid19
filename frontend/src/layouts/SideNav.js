@@ -25,7 +25,7 @@ class SideNav extends Component {
                     <Divider/>
                     <Divider/>
                     <ListItem button key={15} onClick={() => history.push('/updates/india-full')}>
-                        <ListItemText primary={'Updates by Indian Gov'} />
+                        <ListItemText primary={'Updates by Indian Gov.'} />
                     </ListItem>
                     <ListItem button key={1} onClick={() => history.push('/updates/india')}>
                         <ListItemText primary={'India Stats'} />
@@ -48,9 +48,6 @@ class SideNav extends Component {
                     </ListItem>
                     <ListItem button key={4} onClick={() => history.push('/stats/us')}>
                         <ListItemText primary={'United State'} />
-                    </ListItem>
-                    <ListItem button key={5} onClick={() => history.push('/stats/uk')}>
-                        <ListItemText primary={'United Kingdom'} />
                     </ListItem>
                     <ListItem button key={6} onClick={() => history.push('/stats/china')}>
                         <ListItemText primary={'China'} />
