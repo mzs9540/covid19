@@ -27,3 +27,12 @@ class IndiaStatsSerializer(serializers.ModelSerializer):
         model = models.IndiaFullCovidStats
         fields = '__all__'
         read_only_fields = ('id',)
+
+
+class WorldMapSerializer(serializers.ModelSerializer):
+    """Serializer for India Table Data"""
+
+    class Meta:
+        model = models.WorldMapCovidStats
+        fields = ('date', 'confirmed', 'recovered', 'deaths', 'lat', 'lon')
+

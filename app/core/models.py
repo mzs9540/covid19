@@ -189,3 +189,14 @@ class IndiaCovidStats(BaseCountryStats):
 
     def __str__(self):
         return '{} - {}'.format('India', self.date)
+
+
+class WorldMapCovidStats(BaseCountryStats):
+    """Store India Covid Data Date wise"""
+    lat = models.FloatField()
+    lon = models.FloatField()
+    province = models.CharField(max_length=100, default='None')
+    country = models.CharField(max_length=100, default='None')
+
+    def __str__(self):
+        return '{} - {}'.format('India', self.date)

@@ -38,3 +38,14 @@ class IndiaUpdateCrawlerItem(scrapy.Item):
     title = scrapy.Field()
     href = scrapy.Field()
     date = scrapy.Field()
+
+
+class FullStatsCrawlerItem(scrapy.Item):
+    date = scrapy.Field()
+    country = scrapy.Field()
+    province = scrapy.Field()
+    lat = scrapy.Field()
+    lon = scrapy.Field()
+    confirmed = scrapy.Field()
+    recovered = scrapy.Field()
+    deaths = scrapy.Field()

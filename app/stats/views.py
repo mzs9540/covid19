@@ -29,6 +29,15 @@ def csv_parser_helper(request, model):
     return arr
 
 
+class WorldMap(generics.ListAPIView):
+    """Handle upload of CSV file"""
+    parser_classes = (MultiPartParser, )
+    authentication_classes = (TokenAuthentication,)
+    permission_classes = (PermissionsForStaff,)
+    serializer_class = serializers.WorldMapSerializer
+    queryset = models.WorldMapCovidStats.objects.all()
+
+
 class CSVParser(APIView):
     """Handle upload of CSV file"""
     parser_classes = (MultiPartParser, )

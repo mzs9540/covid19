@@ -18,6 +18,7 @@ class HomePage extends React.Component {
         this.props.fetchNews('updates/india')
     }
 
+
     render() {
         return (
             <Grid container spacing={0}>

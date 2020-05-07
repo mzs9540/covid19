@@ -1,5 +1,8 @@
+from datetime import datetime
+
 import scrapy
-from ..items import Covid19CrawlerItem
+from ..items import Covid19CrawlerItem, FullStatsCrawlerItem
+from core.models import WorldMapCovidStats
 
 
 def to_num(value):
@@ -7,9 +10,15 @@ def to_num(value):
         value = '0,0'
     return float(value.replace(',', ''))
 
+def is_number(val):
+    try:
+        float(val)
+        return True
+    except ValueError:
+        return False
+
 
 class FirstSpider(scrapy.Spider):
-
     name = 'covid19'
     start_urls = [
         'https://www.worldometers.info/coronavirus/'
@@ -100,4 +109,41 @@ class FirstSpider(scrapy.Spider):
             items['death_per_million'] = death_per_million[i]
             items['total_deaths'] = total_deaths[i]
             items['new_deaths'] = new_deaths[i]
+            yield items
+
+
+class FullCovid19Stats(scrapy.Spider):
+    name = 'FullCovid19Stats'
+    start_urls = [
+        'https://raw.githubusercontent.com/datasets/covid-19/'
+        'master/data/time-series-19-covid-combined.csv'
+    ]
+
+    custom_settings = {
+        'ITEM_PIPELINES': {
+            'covid19crawler.pipelines.Covid19CrawlerPipeline': 300,
+            'covid19crawler.pipelines.CSVNewsPipeline': 500,
+        }
+    }
+
+    def parse(self, response):
+        items = FullStatsCrawlerItem()
+        t = response.xpath('/html/body//text()').extract()
+        t = t[0].split('\r\n')
+        t = [x for x in t if '2020-05-04' in x]
+        t = [x for x in t if is_number(x.split(',')[3]) and is_number(x.split(',')[4])]
+        WorldMapCovidStats.objects.all().delete()
+        for i in range(len(t)):
+            temp = t[i].split(',')
+            items['date'] = datetime.strptime(temp[0], '%Y-%m-%d').date()
+            items['country'] = temp[1]
+            items['province'] = temp[2]
+            items['lat'] = temp[3]
+            items['lon'] = temp[4]
+            items['confirmed'] = temp[5] if temp[5] != '' else 0
+            items['recovered'] = temp[6] if temp[6] != '' else 0
+            items['deaths'] = temp[7] if temp[7] != '' else 0
+            WorldMapCovidStats.objects.create(
+                **items
+            )
             yield items
