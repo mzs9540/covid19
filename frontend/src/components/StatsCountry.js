@@ -20,7 +20,7 @@ class StatsCountry extends Component {
         return(
             <>
                 <Typography variant='h2' align='center'>
-                    Past 30 days stats of {this.props.country.toUpperCase()}
+                    Covid19 Stats of {this.props.country.toUpperCase()}
                 </Typography>
                 <Divider/>
                 <br/>
