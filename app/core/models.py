@@ -89,9 +89,9 @@ class IndiaCovid19Update(models.Model):
 class IndiaFullCovidStats(models.Model):
     """Store the covid19 stats of India"""
     state = models.CharField(max_length=30)
-    total_case = models.CharField(max_length=20)
-    total_death = models.CharField(max_length=20)
-    total_recovered = models.CharField(max_length=20)
+    total_case = models.IntegerField()
+    total_death = models.IntegerField()
+    total_recovered = models.IntegerField()
 
     class Meta:
         ordering = ['-total_case']
