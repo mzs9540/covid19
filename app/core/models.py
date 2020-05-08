@@ -94,7 +94,8 @@ class IndiaFullCovidStats(models.Model):
     total_recovered = models.CharField(max_length=20)
 
     class Meta:
-        ordering = ['state']
+        ordering = ['-total_case']
+        verbose_name_plural = "India Statewise Covid19 stats"
 
     def __str__(self): return f'{self.state} - {self.total_case}'
 

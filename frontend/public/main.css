@@ -83,8 +83,13 @@ canvas {
     }
 
     canvas {
-        height:500px !important;
-        width: 100%; !important;
+        height:300px !important;
+        width: 100vw; !important;
+    }
+
+    .MuiTableContainer-root {
+        max-width: 85vw;
+        overflow-y: auto;
     }
 
     #sidenav-scrollbar {
