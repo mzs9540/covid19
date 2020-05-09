@@ -2,13 +2,14 @@ from datetime import datetime
 
 import scrapy
 from ..items import Covid19CrawlerItem, FullStatsCrawlerItem
-from core.models import WorldMapCovidStats
+from core.models import WorldMapCovidStats, WorldCovidStats
 
 
 def to_num(value):
     if value == 'N/A':
         value = '0,0'
     return float(value.replace(',', ''))
+
 
 def is_number(val):
     try:
@@ -32,7 +33,20 @@ class FirstSpider(scrapy.Spider):
     }
 
     def parse(self, response):
-        items = Covid19CrawlerItem()
+        def item(i):
+            items = Covid19CrawlerItem()
+            items['countries'] = countries[i]
+            items['total_cases'] = total_cases[i]
+            items['new_cases'] = new_cases[i]
+            items['total_recovered'] = total_recovered[i]
+            items['active_cases'] = active_cases[i]
+            items['total_cases_per_million'] = total_cases_per_million[i]
+            items['death_per_million'] = death_per_million[i]
+            items['total_deaths'] = total_deaths[i]
+            items['new_deaths'] = new_deaths[i]
+
+            return items
+
         t = response.css('table')
         countries = []
         total_cases = []
@@ -80,35 +94,33 @@ class FirstSpider(scrapy.Spider):
         for data in t.css('td:nth-child(10)'):
             value = "".join(data.css('::text').get(default='0'))
             death_per_million.append(to_num(value))
+            
+        # countries = countries[8:221]
+        # total_cases = total_cases[8:221]
+        # new_cases = new_cases[8:221]
+        # total_deaths = total_deaths[8:221]
+        # total_recovered = total_recovered[8:221]
+        # active_cases = active_cases[8:221]
+        # total_cases_per_million = total_cases_per_million[8:221]
+        # death_per_million = death_per_million[8:221]
+        # new_deaths = new_deaths[8:221]
 
-        print(type(t.css('td:nth-child(4)::text').get()))
-        # new_cases = t.css('td:nth-child(3)::text').get(default=0)
-        # total_deaths = t.css('td:nth-child(4)::text').get(default=0)
-        # new_deaths = t.css('td:nth-child(5)::text').get(default=0)
-        # total_recovered = t.css('td:nth-child(6)::text').get(default=0)
-        # active_cases = t.css('td:nth-child(7)::text').get(default=0)
-        # total_cases_per_million = t.css('td:nth-child(9)::text').extract()
-        # death_per_million = t.css('td:nth-child(10)::text').extract()
-        # countries = countries[9:221]
-        # total_cases = total_cases[9:221]
-        # new_cases = new_cases[9:221]
-        # total_deaths = total_deaths[9:221]
-        # total_recovered = total_recovered[9:221]
-        # active_cases = active_cases[9:221]
-        # total_cases_per_million = total_cases_per_million[9:221]
-        # death_per_million = death_per_million[9:221]
-        # new_deaths = new_deaths[9:221]
+        WorldCovidStats.objects.all().delete()
+        for i in range(8, 221):
+            items = item(i)
+            WorldCovidStats.objects.create(country=items['countries'],
+                                           total_case=items['total_cases'],
+                                           new_case=items['new_cases'],
+                                           total_recovered=items['total_recovered'],
+                                           active_case=items['active_cases'],
+                                           cases_per_million=items['total_cases_per_million'],
+                                           deaths_per_million=items['death_per_million'],
+                                           total_death=items['total_deaths'],
+                                           new_death=items['new_deaths'])
+            print(items)
 
         for i in range(len(total_cases)):
-            items['countries'] = countries[i]
-            items['total_cases'] = total_cases[i]
-            items['new_cases'] = new_cases[i]
-            items['total_recovered'] = total_recovered[i]
-            items['active_cases'] = active_cases[i]
-            items['total_cases_per_million'] = total_cases_per_million[i]
-            items['death_per_million'] = death_per_million[i]
-            items['total_deaths'] = total_deaths[i]
-            items['new_deaths'] = new_deaths[i]
+            items = item(i)
             yield items
 
 

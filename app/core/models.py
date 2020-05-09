@@ -107,6 +107,9 @@ class BaseCountryStats(models.Model):
     recovered = models.IntegerField()
     deaths = models.IntegerField()
 
+    class Meta:
+        ordering = ['date']
+
 
 class ChinaCovidStats(BaseCountryStats):
     """Store covid19 Stats from april"""

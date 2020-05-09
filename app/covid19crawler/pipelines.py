@@ -1,7 +1,10 @@
+import psycopg2
+from decouple import config
 from scrapy.exporters import CsvItemExporter
 
 
 class Covid19CrawlerPipeline(object):
+
     def process_item(self, item, spider):
         return item
 
