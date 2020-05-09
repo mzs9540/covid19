@@ -50,11 +50,13 @@ class IndiaCovid19Stats(scrapy.Spider):
                       ]:
             index = str(model.objects.first()).split(' ')[0]
             print(index)
-            model.objects.get_or_create(
-                confirmed=countries[index][1],
-                recovered=countries[index][2],
-                deaths=countries[index][3],
-                defaults={
-                    'date': datetime.strptime(countries[index][0], '%Y-%m-%d').date(),
-                }
-            )
+            if model.objects.last().date != datetime.strptime(countries[index][0], '%Y-%m-%d').date():
+                model.objects.get_or_create(
+                    confirmed=countries[index][1],
+                    recovered=countries[index][2],
+                    deaths=countries[index][3],
+                    defaults={
+                        'date': datetime.strptime(countries[index][0], '%Y-%m-%d').date(),
+                    }
+                )
+                model.objects.first().delete()
