@@ -5,6 +5,12 @@ import {Divider, Paper} from "@material-ui/core";
 
 
 class SideNav extends Component {
+
+    openInNewTab = url => {
+        let win = window.open(url, '_blank');
+        win.focus();
+    }
+
     root = {
         position: 'sticky',
         padding: 30,
@@ -25,6 +31,10 @@ class SideNav extends Component {
                     </Typography>
                     <Divider/>
                     <Divider/>
+                    <ListItem button key={15} onClick={() => this.openInNewTab('https://static.mygov.in/rest/' +
+                        's3fs-public/mygov_158831498053877021.pdf')}>
+                        <ListItemText primary={'Hotspot Districts'} />
+                    </ListItem>
                     <ListItem button key={15} onClick={() => history.push('/updates/india-full')}>
                         <ListItemText primary={'Updates by Indian Gov.'} />
                     </ListItem>

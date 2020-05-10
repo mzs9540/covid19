@@ -9,7 +9,6 @@ import {fetchNews} from "../actions/newsActions";
 import Table from '../layouts/Table';
 import Divider from "@material-ui/core/Divider";
 import {fetchTable} from "../actions/tableActions";
-import CubeLayout from "../layouts/CubeLayout";
 
 class HomePage extends React.Component {
 

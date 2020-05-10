@@ -85,6 +85,9 @@ class IndiaCovid19Update(models.Model):
     class Meta:
         ordering = ['-date']
 
+    def __str__(self):
+        return f'{self.title}-{self.date}'
+
 
 class IndiaFullCovidStats(models.Model):
     """Store the covid19 stats of India"""

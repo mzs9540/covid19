@@ -60,26 +60,28 @@ class IndiaCovid19Updates(scrapy.Spider):
     }
 
     def parse(self, response):
-        t = response.css('.stretched-link')
-        t1 = t.css('::text').extract()
+        t1 = response.css('#tb_1')
+        t2 = response.css('#tb_3')
         title = []
+        t_date = []
         date = []
-        href = response.css('.stretched-link::attr(href)').extract()
+        href = []
+        title.extend(t1.css('a::text').extract()[:3])
+        t_date.extend(t1.css('small::text').extract()[:3])
+        href.extend(t1.css('a::attr(href)').extract()[:3])
+        title.extend(t2.css('a::text').extract()[:5])
+        t_date.extend(t2.css('small::text').extract()[:5])
+        href.extend(t2.css('a::attr(href)').extract()[:5])
 
-        for i in range(0, len(t1), 2):
-            title.append(t1[i])
-
-        for i in range(1, len(t1), 2):
+        for i in range(len(t_date)):
             try:
-                dat = datetime.strptime(t1[i], '%Y-%m-%d').date()
-                print(dat)
+                dat = datetime.strptime(t_date[i], '%d-%m-%Y').date()
                 date.append(dat)
             except (ValueError, TypeError):
-                dat = datetime.strptime(t1[i], '%d-%m-%Y').date()
-                print(dat)
+                dat = datetime.strptime(t_date[i], '%Y-%m-%d').date()
                 date.append(dat)
 
-        for i in range(20):
+        for i in range(len(title)):
             it, created = IndiaCovid19Update.objects.get_or_create(
                 title=title[i],
                 date=date[i],
