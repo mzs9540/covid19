@@ -36,8 +36,8 @@ class IndiaCovid19Stats(scrapy.Spider):
             IndiaFullCovidStats.objects.create(
                 state=state[i],
                 total_death=deaths[i],
-                total_case= confirmed[i],
-                total_recovered= recovered[i])
+                total_case=confirmed[i],
+                total_recovered=recovered[i])
             items['state'] = state[i]
             items['confirmed'] = confirmed[i]
             items['recovered'] = recovered[i]

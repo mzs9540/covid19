@@ -9,6 +9,7 @@ import {fetchNews} from "../actions/newsActions";
 import Table from '../layouts/Table';
 import Divider from "@material-ui/core/Divider";
 import {fetchTable} from "../actions/tableActions";
+import PaperLayout from "../layouts/PaperLayout";
 
 class HomePage extends React.Component {
 
@@ -26,6 +27,7 @@ class HomePage extends React.Component {
                     <SideNav/>
                 </Grid>
                 <Grid item sm={9} style={{marginLeft: "auto", width: '100%'}}>
+                    <PaperLayout/>
                     <Table stats={this.props.stats.tableData}
                            keys={this.props.stats.keys} title={'State wise Covid19 Data - India'}/>
                            <br/>

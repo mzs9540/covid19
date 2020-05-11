@@ -25,6 +25,7 @@ class SideNav extends Component {
     render() {
         return (
             <Paper id='sidenav-scrollbar' elevation={3} style={this.root}>
+                
                 <List>
                     <Typography variant='h6' align='center'>
                         Useful Links
