@@ -32,6 +32,7 @@ INSTALLED_APPS = [
     'users',
     'news',
     'stats',
+    'query',
     'covid19crawler.apps.ScrapyProjectConfig',
     'corsheaders',
 ]

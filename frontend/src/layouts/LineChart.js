@@ -15,10 +15,10 @@ class LineChart extends Component {
                             datasets: [
                                 {
                                     label: this.props.stats.label,
-                                    fill: false,
+                                    fill: true,
                                     lineTension: 0.5,
-                                    borderColor: 'white',
-                                    backgroundColor: 'blue',
+                                    borderColor: this.props.stats.color,
+                                    backgroundColor: this.props.stats.backgroundColor,
                                     borderWidth: 2,
                                     data: this.props.stats.data,
                                 }

@@ -19,3 +19,4 @@ class UpdatesSerializer(serializers.ModelSerializer):
         model = None
         fields = '__all__'
         read_only_fields = ('id',)
+

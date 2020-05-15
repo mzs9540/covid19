@@ -8,5 +8,5 @@ urlpatterns = [
     path('world-map/', views.WorldMap.as_view(), name='world_map'),
     path('upload/<country>/', views.CSVParser.as_view(), name='upload_stat_world'),
     path('india-stats/', views.IndiaTableView.as_view(), name='india_table_data'),
-    path('<stats>/', views.StatListView.as_view(), name='stats')
+    path('<stats>/', views.StatListView.as_view(), name='stats'),
 ]

@@ -32,21 +32,34 @@ class Covid19NewsModelAdmin(admin.ModelAdmin):
     search_fields = ('title', 'href')
 
 
-admin.site.register(models.User, UserAdmin)
-admin.site.register(models.CovidNews, Covid19NewsModelAdmin)
-admin.site.register(models.IndiaFullCovidStats)
-admin.site.register(models.WorldCovidStats)
-admin.site.register(models.ChinaCovidStats)
-admin.site.register(models.FranceCovidStats)
-admin.site.register(models.SpainCovidStats)
-admin.site.register(models.TurkeyCovidStats)
-admin.site.register(models.UsCovidStats)
-admin.site.register(models.UKCovidStats)
-admin.site.register(models.UkraineCovidStats)
-admin.site.register(models.IndiaCovidStats)
-admin.site.register(models.ItalyCovidStats)
-admin.site.register(models.IranCovidStats)
-admin.site.register(models.RussiaCovidStats)
-admin.site.register(models.GermanyCovidStats)
-admin.site.register(models.IndiaCovid19Update)
-admin.site.register(models.WorldMapCovidStats)
+def register_site(_model, _manager=None):
+    """Register models to admin.py"""
+
+    if _manager:
+        admin.site.register(_model, _manager)
+    else:
+        admin.site.register(_model)
+
+
+register_model = [(models.User, UserAdmin),
+                  (models.CovidNews, Covid19NewsModelAdmin),
+                  (models.IndiaFullCovidStats, None),
+                  (models.FranceCovidStats, None),
+                  (models.IranCovidStats, None),
+                  (models.WorldCovidStats, None),
+                  (models.ChinaCovidStats, None),
+                  (models.TurkeyCovidStats, None),
+                  (models.SpainCovidStats, None),
+                  (models.GermanyCovidStats, None),
+                  (models.UkraineCovidStats, None),
+                  (models.UKCovidStats, None),
+                  (models.RussiaCovidStats, None),
+                  (models.IndiaCovid19Update, None),
+                  (models.IndiaCovidStats, None),
+                  (models.Covid19Query, None),
+                  (models.Covid19QueryReplies, None),
+                  ]
+
+
+for model, manager in register_model:
+    register_site(model, manager)

@@ -1,6 +1,9 @@
+from django.conf import settings
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, \
     PermissionsMixin
+
+"""Models For User App"""
 
 
 class UserManager(BaseUserManager):
@@ -40,6 +43,9 @@ class User(AbstractBaseUser, PermissionsMixin):
     USERNAME_FIELD = 'email'
 
 
+# Models for News App
+
+
 class CovidNews(models.Model):
     """Store the news of crawler based on covid 19"""
 
@@ -53,6 +59,22 @@ class CovidNews(models.Model):
 
     def __str__(self):
         return self.title
+
+
+class IndiaCovid19Update(models.Model):
+    """Store the covid19 Update of India"""
+    title = models.CharField(max_length=1000)
+    date = models.DateField()
+    href = models.CharField(max_length=2000)
+
+    class Meta:
+        ordering = ['-date']
+
+    def __str__(self):
+        return f'{self.title}-{self.date}'
+
+
+# Models for app stats
 
 
 class WorldCovidStats(models.Model):
@@ -74,19 +96,6 @@ class WorldCovidStats(models.Model):
         ordering = ['-total_case']
 
     def __str__(self): return self.country
-
-
-class IndiaCovid19Update(models.Model):
-    """Store the covid19 Update of India"""
-    title = models.CharField(max_length=1000)
-    date = models.DateField()
-    href = models.CharField(max_length=2000)
-
-    class Meta:
-        ordering = ['-date']
-
-    def __str__(self):
-        return f'{self.title}-{self.date}'
 
 
 class IndiaFullCovidStats(models.Model):
@@ -207,3 +216,37 @@ class WorldMapCovidStats(BaseCountryStats):
 
     def __str__(self):
         return '{} - {}'.format('India', self.date)
+
+
+# Models for App query
+
+
+class Covid19Query(models.Model):
+    """Model for storing queries of different user"""
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    query = models.TextField()
+    admin_reply = models.TextField(default='We Will Reply You Soon')
+    posted_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        ordering = ['-posted_at']
+
+    def __str__(self):
+        return f'{self.user}-{self.posted_at}'
+
+
+class Covid19QueryReplies(models.Model):
+    """Nested Replies to covid19 query"""
+    reply = models.TextField()
+    query = models.ForeignKey(Covid19Query,
+                              on_delete=models.CASCADE,
+                              related_name='query_replies')
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    posted_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        ordering = ['-posted_at']
+        verbose_name_plural = 'Replies to Covid19 Queries'
+
+    def __str__(self):
+        return f'{self.user} - {self.posted_at}'

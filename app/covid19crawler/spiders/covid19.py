@@ -6,8 +6,8 @@ from core.models import WorldMapCovidStats, WorldCovidStats
 
 
 def to_num(value):
-    if value == 'N/A':
-        value = '0,0'
+    if value == 'N/A' or value.isspace():
+        return 0
     return float(value.replace(',', ''))
 
 
@@ -57,41 +57,40 @@ class FirstSpider(scrapy.Spider):
         total_cases_per_million = []
         death_per_million = []
         new_deaths = []
-        for data in t.css('td:nth-child(1)'):
-            value = "".join(data.css('::text').get(default='0'))
-            countries.append(value)
+        for data in t.css('td:nth-child(2) a::text').extract()[8:213]:
+            countries.append(data)
 
-        for data in t.css('td:nth-child(2)'):
-            value = "".join(data.css('::text').get(default='0'))
+        for data in t.css('td:nth-child(3)')[8:213]:
+            value = data.css('::text').get(default='0')
             total_cases.append(to_num(value))
 
-        for data in t.css('td:nth-child(3)'):
+        for data in t.css('td:nth-child(4)')[8:213]:
             value = "".join(data.css('::text').get(default='0'))
             new_cases.append(to_num(value))
 
-        for data in t.css('td:nth-child(4)'):
+        for data in t.css('td:nth-child(5)')[8:213]:
             value = data.css('::text').get(default=0)
             if value == ' ' or value == '  ':
                 value = '0'
             total_deaths.append(to_num(value))
 
-        for data in t.css('td:nth-child(5)'):
+        for data in t.css('td:nth-child(6)')[8:213]:
             value = "".join(data.css('::text').get(default='0'))
             new_deaths.append(to_num(value))
 
-        for data in t.css('td:nth-child(6)'):
+        for data in t.css('td:nth-child(7)')[8:213]:
             value = "".join(data.css('::text').get(default='0'))
             total_recovered.append(to_num(value))
 
-        for data in t.css('td:nth-child(7)'):
+        for data in t.css('td:nth-child(8)')[8:213]:
             value = "".join(data.css('::text').get(default='0'))
             active_cases.append(to_num(value))
 
-        for data in t.css('td:nth-child(9)'):
+        for data in t.css('td:nth-child(10)')[8:213]:
             value = "".join(data.css('::text').get(default='0'))
             total_cases_per_million.append(to_num(value))
 
-        for data in t.css('td:nth-child(10)'):
+        for data in t.css('td:nth-child(11)')[8:213]:
             value = "".join(data.css('::text').get(default='0'))
             death_per_million.append(to_num(value))
             
@@ -106,7 +105,7 @@ class FirstSpider(scrapy.Spider):
         # new_deaths = new_deaths[8:221]
 
         WorldCovidStats.objects.all().delete()
-        for i in range(8, 221):
+        for i in range(205):
             items = item(i)
             WorldCovidStats.objects.create(country=items['countries'],
                                            total_case=items['total_cases'],
@@ -117,7 +116,6 @@ class FirstSpider(scrapy.Spider):
                                            deaths_per_million=items['death_per_million'],
                                            total_death=items['total_deaths'],
                                            new_death=items['new_deaths'])
-            print(items)
 
         for i in range(len(total_cases)):
             items = item(i)
