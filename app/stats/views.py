@@ -3,14 +3,22 @@ from datetime import datetime
 
 from rest_framework import generics
 from rest_framework.authentication import TokenAuthentication
+from rest_framework.decorators import api_view
 from rest_framework.parsers import MultiPartParser
 from rest_framework.response import Response
 from rest_framework.views import APIView
+from scrapy.utils.log import configure_logging
 
 from stats import serializers
 
 from core import models
 from core.permissions.permission import PermissionsForStaff
+
+from scrapy.crawler import CrawlerProcess, CrawlerRunner
+from scrapy.utils.project import get_project_settings
+
+from covid19crawler.spiders.covid19 import Covid19
+from twisted.internet import reactor
 
 
 def csv_parser_helper(request, model):
@@ -220,3 +228,14 @@ class WorldTableView(generics.ListAPIView):
     serializer_class = serializers.WorldStatsSerializer
     permission_classes = (PermissionsForStaff,)
     authentication_classes = (TokenAuthentication,)
+
+
+@api_view(('GET',))
+def run_scrapy(request):
+    """Views for running all scrapy spyder"""
+    runner = CrawlerRunner()
+    configure_logging({'LOG_FORMAT': '%(levelname)s: %(message)s'})
+    d = runner.crawl(Covid19)
+    d.addBoth(lambda _: reactor.stop())
+    reactor.run()
+    return Response()

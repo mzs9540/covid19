@@ -11,7 +11,7 @@ def to_num(value):
     return float(value.replace(',', ''))
 
 
-class IndiaCovid19Stats(scrapy.Spider):
+class Covid19Stats(scrapy.Spider):
 
     name = 'CountryStats'
 

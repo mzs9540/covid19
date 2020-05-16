@@ -19,7 +19,7 @@ def is_number(val):
         return False
 
 
-class FirstSpider(scrapy.Spider):
+class Covid19(scrapy.Spider):
     name = 'covid19'
     start_urls = [
         'https://www.worldometers.info/coronavirus/'
@@ -34,7 +34,6 @@ class FirstSpider(scrapy.Spider):
 
     def parse(self, response):
         def item(i):
-            items = Covid19CrawlerItem()
             items['countries'] = countries[i]
             items['total_cases'] = total_cases[i]
             items['new_cases'] = new_cases[i]
@@ -44,8 +43,6 @@ class FirstSpider(scrapy.Spider):
             items['death_per_million'] = death_per_million[i]
             items['total_deaths'] = total_deaths[i]
             items['new_deaths'] = new_deaths[i]
-
-            return items
 
         t = response.css('table')
         countries = []
@@ -57,7 +54,7 @@ class FirstSpider(scrapy.Spider):
         total_cases_per_million = []
         death_per_million = []
         new_deaths = []
-        for data in t.css('td:nth-child(2) a::text').extract()[8:213]:
+        for data in t.css('td:nth-child(2) a::text').extract()[0:205]:
             countries.append(data)
 
         for data in t.css('td:nth-child(3)')[8:213]:
@@ -106,7 +103,8 @@ class FirstSpider(scrapy.Spider):
 
         WorldCovidStats.objects.all().delete()
         for i in range(205):
-            items = item(i)
+            items = Covid19CrawlerItem()
+            item(i)
             WorldCovidStats.objects.create(country=items['countries'],
                                            total_case=items['total_cases'],
                                            new_case=items['new_cases'],
@@ -118,7 +116,8 @@ class FirstSpider(scrapy.Spider):
                                            new_death=items['new_deaths'])
 
         for i in range(len(total_cases)):
-            items = item(i)
+            items = Covid19CrawlerItem()
+            item(i)
             yield items
 
 
