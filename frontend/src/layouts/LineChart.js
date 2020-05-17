@@ -8,7 +8,7 @@ class LineChart extends Component {
     render() {
         return (
             <Container maxWidth='md'>
-                <Paper elevation={3}>
+                <Paper elevation={3} id='LineChart'>
                     <Line
                         data={{
                             labels: this.props.stats.labels,
@@ -25,7 +25,7 @@ class LineChart extends Component {
                             ]
                         }}
                         options={{
-                            backgroundColor: "#424242",
+                            backgroundColor: "rgb(0,0,0)",
                             responsive: true,
                             maintainAspectRatio: false,
                             title:{
@@ -50,11 +50,17 @@ class LineChart extends Component {
                                     ticks: {
                                         fontColor: '#fff'
                                     },
+                                    gridLines: {
+                                        zeroLineColor: '#ffcc33'
+                                    }
                                 }],
                                 xAxes: [{
                                     ticks: {
                                         fontColor: '#fff'
                                     },
+                                    gridLines: {
+                                        zeroLineColor: '#ffcc33'
+                                    }
                                 }]
                             }
                         }}

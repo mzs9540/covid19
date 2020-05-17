@@ -13,8 +13,8 @@ india_deaths = india.drop(['Recovered', 'Confirmed'], axis=1)
 india_recovered = india.drop(['Confirmed', 'Deaths'], axis=1)
 
 india_confirmed.to_csv('india_confirmed.csv', index=False)
-india_deaths.to_csv('india_deaths.csv')
-india_recovered.to_csv('india_recovered.csv')
+
+print(india.dtypes)
 
 
 

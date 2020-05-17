@@ -15,6 +15,10 @@ body {
     color: white;
 }
 
+#LineChart {
+    background-color: black;
+}
+
 a {
     color: white;
 }
@@ -87,7 +91,7 @@ body::-webkit-scrollbar-thumb {
 
     canvas {
         height:300px !important;
-        width: 95vw; !important;
+        width: 90vw; !important;
     }
 
     .MuiTableContainer-root {
