@@ -9,6 +9,7 @@ const PaperLayout = props => {
                 <img src='covid-icon.png' alt='img'/> Helpline:</Typography>
             <Typography variant={'h6'} align='center'>
                 <a href='tel:011-23978046'> 011-23978046 </a> or <a href='tel:1075'> 1075 </a>
+                <br/>
                 <a href='mailto:ncov2019@gov.in'> Email: ncov2019@gov.in</a>
             </Typography>
         </Paper>
