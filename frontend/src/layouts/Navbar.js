@@ -14,7 +14,7 @@ class NavBar extends React.Component {
                     <Toolbar >
                         <Link to='/' style={{textDecoration: "none"}}>
                         <Typography variant="h5" align='center'>
-                            <img src='covid-icon.png' alt='img'/>
+                            <img src='./covid-icon.png' alt='img'/>
                             Covid19
                             <br/>
                             <Typography>

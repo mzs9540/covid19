@@ -30,7 +30,7 @@ class UserManager(BaseUserManager):
 
 
 class User(AbstractBaseUser, PermissionsMixin):
-    """Custom user model that supports using email instead of username"""
+    """Custom user model that supports login using email instead of username"""
     email = models.EmailField(max_length=255, unique=True)
     name = models.CharField(max_length=255)
     country = models.CharField(max_length=20, default='India')
@@ -93,6 +93,7 @@ class WorldCovidStats(models.Model):
     # test_per_million = models.CharField(max_length=20)
 
     class Meta:
+        verbose_name_plural = 'World Covid19 Stats'
         ordering = ['-total_case']
 
     def __str__(self): return self.country

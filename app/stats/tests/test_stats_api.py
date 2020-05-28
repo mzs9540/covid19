@@ -7,10 +7,9 @@ from rest_framework.test import APIClient
 
 from core.models import WorldCovidStats
 
-from stats.serializers import CSVSerializer
+from ..serializers import WorldStatsSerializer
 
-WORLD_STATS_URL = reverse('stats:stats')
-UPLOAD_CSV_URL = reverse('stats:upload_stat_world')
+WORLD_STATS_URL = reverse('stats:world_table_data')
 
 data = {
     'country': 'USA',
@@ -46,7 +45,7 @@ class PublicStatsApiTest(TestCase):
         res = self.client.get(WORLD_STATS_URL)
 
         world_stat = WorldCovidStats.objects.all().order_by('-total_case')
-        serializer = CSVSerializer(world_stat, many=True)
+        serializer = WorldStatsSerializer(world_stat, many=True)
         self.assertEqual(res.status_code, status.HTTP_200_OK)
         self.assertEqual(res.data, serializer.data)
 

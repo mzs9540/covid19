@@ -32,13 +32,13 @@ class Covid19NewsModelAdmin(admin.ModelAdmin):
     search_fields = ('title', 'href')
 
 
-def register_site(_model, _manager=None):
+def register_site(model, manager=None):
     """Register models to admin.py"""
 
-    if _manager:
-        admin.site.register(_model, _manager)
+    if manager:
+        admin.site.register(model, manager)
     else:
-        admin.site.register(_model)
+        admin.site.register(model)
 
 
 register_model = [(models.User, UserAdmin),
@@ -61,5 +61,5 @@ register_model = [(models.User, UserAdmin),
                   ]
 
 
-for model, manager in register_model:
-    register_site(model, manager)
+for model_to_reg, model_manager in register_model:
+    register_site(model_to_reg, model_manager)

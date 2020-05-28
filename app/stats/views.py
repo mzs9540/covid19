@@ -9,19 +9,19 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 from scrapy.utils.log import configure_logging
 
-from stats import serializers
+from . import serializers
 
 from core import models
 from core.permissions.permission import PermissionsForStaff
 
-from scrapy.crawler import CrawlerProcess, CrawlerRunner
-from scrapy.utils.project import get_project_settings
+from scrapy.crawler import CrawlerRunner
 
 from covid19crawler.spiders.covid19 import Covid19
 from twisted.internet import reactor
 
 
 def csv_parser_helper(request, model):
+    serializers.StatsSerializer.Meta.model = model
     model.objects.all().delete()
     arr = []
     with open(f"{request.data['csv']}") as csv_file:
@@ -54,7 +54,7 @@ class CSVParser(APIView):
 
     def post(self, request, *args, **kwargs):
         # to access files
-        if kwargs['country'] == 'world':
+        if kwargs['var'] == 'world':
             models.WorldCovidStats.objects.all().delete()
             print(request.data['csv'])
             with open(f"{request.data['csv']}") as csv_file:
@@ -76,78 +76,6 @@ class CSVParser(APIView):
                     serializer = serializers.WorldStatsSerializer(data=data)
                     if serializer.is_valid():
                         serializer.save()
-        elif kwargs['country'] == 'india':
-            arr = csv_parser_helper(request, models.IndiaCovidStats)
-            for data in arr:
-                serializer = serializers.IndiaSerializer(data=data)
-                if serializer.is_valid():
-                    serializer.save()
-        elif kwargs['country'] == 'iran':
-            arr = csv_parser_helper(request, models.IranCovidStats)
-            for data in arr:
-                serializer = serializers.IranSerializer(data=data)
-                if serializer.is_valid():
-                    serializer.save()
-        elif kwargs['country'] == 'turkey':
-            arr = csv_parser_helper(request, models.TurkeyCovidStats)
-            for data in arr:
-                serializer = serializers.TurkeySerializer(data=data)
-                if serializer.is_valid():
-                    serializer.save()
-        elif kwargs['country'] == 'uk':
-            arr = csv_parser_helper(request, models.UKCovidStats)
-            for data in arr:
-                serializer = serializers.UkSerializer(data=data)
-                if serializer.is_valid():
-                    serializer.save()
-        elif kwargs['country'] == 'us':
-            arr = csv_parser_helper(request, models.UsCovidStats)
-            for data in arr:
-                serializer = serializers.UsSerializer(data=data)
-                if serializer.is_valid():
-                    serializer.save()
-        elif kwargs['country'] == 'germany':
-            arr = csv_parser_helper(request, models.GermanyCovidStats)
-            for data in arr:
-                serializer = serializers.GermanySerializer(data=data)
-                if serializer.is_valid():
-                    serializer.save()
-        elif kwargs['country'] == 'spain':
-            arr = csv_parser_helper(request, models.SpainCovidStats)
-            for data in arr:
-                serializer = serializers.SpainSerializer(data=data)
-                if serializer.is_valid():
-                    serializer.save()
-        elif kwargs['country'] == 'italy':
-            arr = csv_parser_helper(request, models.ItalyCovidStats)
-            for data in arr:
-                serializer = serializers.ItalySerializer(data=data)
-                if serializer.is_valid():
-                    serializer.save()
-        elif kwargs['country'] == 'ukraine':
-            arr = csv_parser_helper(request, models.UkraineCovidStats)
-            for data in arr:
-                serializer = serializers.UkraineSerializer(data=data)
-                if serializer.is_valid():
-                    serializer.save()
-        elif kwargs['country'] == 'france':
-            arr = csv_parser_helper(request, models.FranceCovidStats)
-            for data in arr:
-                serializer = serializers.FranceSerializer(data=data)
-                if serializer.is_valid():
-                    serializer.save()
-        elif kwargs['country'] == 'russia':
-            arr = csv_parser_helper(request, models.RussiaCovidStats)
-            for data in arr:
-                serializer = serializers.RussiaSerializer(data=data)
-                if serializer.is_valid():
-                    serializer.save()
-        elif kwargs['country'] == 'china':
-            arr = csv_parser_helper(request, models.ChinaCovidStats)
-            for data in arr:
-                serializer = serializers.ChinaSerializer(data=data)
-                if serializer.is_valid():
-                    serializer.save()
         else:
             return Response('Please Provide Valid Country')
 

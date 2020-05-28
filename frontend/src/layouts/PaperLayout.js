@@ -6,7 +6,7 @@ const PaperLayout = props => {
         <>
         <Paper elevation={3} variant={"outlined"} square style={{padding: '10px'}}>
             <Typography variant='h5' align='center'>
-                <img src='covid-icon.png' alt='img'/> Helpline:</Typography>
+                <img src='./covid-icon.png' alt='img'/> Helpline:</Typography>
             <Typography variant={'h6'} align='center'>
                 <a href='tel:011-23978046'> 011-23978046 </a> or <a href='tel:1075'> 1075 </a>
                 <br/>
